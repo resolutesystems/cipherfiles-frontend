@@ -16,20 +16,11 @@ export function FAQ() {
 	const [hamburgerOpen, setHamburgerOpen] = useState(false)
 
     useEffect(() => {
-			gsap.fromTo(
-				'#home',
-				{
-					translateX: '-=100',
-					autoAlpha: 0,
-					scale: .8,
-				},
-				{
-					translateX: 0,
-					autoAlpha: 1,
-					scale: 1,
-					duration: .4,
-					ease: 'back',
-				})
+        gsap.fromTo('#gay', {
+            translateX: '-=100',
+        }, {
+            translateX: '0', duration: .3, ease: 'back', stagger: .2,
+        })
     })
 
     const copyDownloadUrl = () => {
@@ -44,7 +35,7 @@ export function FAQ() {
     };
 
     return (
-        <div>
+        <div id={"gay"}>
             <h2 class="text-center font-bold text-3xl mb-2">FAQ</h2>
             <ul class="flex flex-col gap-5">
                 <li>

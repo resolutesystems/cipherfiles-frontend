@@ -23,6 +23,10 @@
   transition: background-color .4s, border-bottom-color .4s;
 }
 
+.whiteshadow {
+	box-shadow: 3px 3px #fff;
+}
+
 .content {
   margin: 0 auto;
 
