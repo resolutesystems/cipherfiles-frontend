@@ -1,7 +1,5 @@
 import { h } from 'preact';
 import { formatBytes } from './helpers';
-// import DocumentIcon from '$lib/icons/DocumentIcon'; // Popraw ścieżkę do komponentu DocumentIcon
-// import XIcon from '$lib/icons/XIcon'; // Popraw ścieżkę do komponentu XIcon
 import DocumentIcon from "../assets/icons/DocumentIcon";
 import XIcon from "../assets/icons/XIcon";
 
@@ -14,13 +12,14 @@ interface Props {
 
 export function File({ name, progress, size, canRemove }: Props) {
     const handleClick = () => {
-        // Obsługa kliknięcia przycisku usuwania
+        // todo removing
     };
 
     return (
-        <div class="flex flex-col px-3 py-3 font-light bg-neutral-800/50 gap-3 rounded-lg border-2 border-neutral-700/30">
+        <div class="flex flex-col px-3 py-3 font-light gap-3 rounded-lg border border-white whiteshadow">
             <div class="flex items-center gap-2">
-                <div class="flex items-center bg-neutral-700 p-2 rounded-full">
+                <div class="flex items-center bg-white p-2 rounded-[20%]">
+                {/* <div class="flex items-center p-2"> */}
                     <DocumentIcon/>
                 </div>
                 <p>{name}</p>

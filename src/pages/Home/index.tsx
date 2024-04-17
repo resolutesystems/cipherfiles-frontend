@@ -5,15 +5,13 @@ import { File } from '../../components/File';
 import { Button } from '../../components/Button';
 import { Link } from 'preact-router/match';
 import styles from './header.module.scss'
-// import File from '../../components/File'; // Popraw ścieżkę do komponentu File
-// import Button from '../../components/Button'; // Popraw ścieżkę do komponentu Button
-// Importuj funkcję enhance z odpowiedniego miejsca
 
 export function Home() {
     const [state, setState] = useState<"selecting" | "uploading" | "uploaded">("selecting");
     const [downloadUrl, setDownloadUrl] = useState<string>("");
     const [files, setFiles] = useState<FileList | null>(null);
     const [isDragging, setIsDragging] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
     const copyDownloadUrl = () => {
         if (downloadUrl) {
@@ -42,12 +40,13 @@ export function Home() {
         setIsDragging(false);
         const files = event.dataTransfer.files;
     
-        const fileSizeExceedsLimit = Array.from(files).some(file => file.size > 1024 * 1024 * 1024);
-    
-        if (fileSizeExceedsLimit) {
-            alert("One or more files exceed the 1 GB size limit. Please upload files smaller than 1 GB.");
+        const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
+        
+        if (totalSize > 1024 * 1024 * 1024) {
+            setErrorMessage("Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.");
         } else {
             setFiles(files);
+            setErrorMessage("");
         }
     };
 
@@ -82,7 +81,7 @@ export function Home() {
                     <p class="text-center text-neutral-300 mb-5 font-light">Maximum upload file size: <strong>1 GB</strong></p>
                     <form class="flex flex-col" method="post" enctype="multipart/form-data">
                         {files && files.length > 0 && (
-							<div class="flex flex-col gap-2 mb-5">
+							<div id={"file"} class="flex flex-col gap-2 mb-5">
 								{Array.from(files).map((file, index) => (
 									<File name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} />
 								))}
@@ -96,18 +95,25 @@ export function Home() {
                                 {/* <input onChange={(e) => setFiles(e.currentTarget.files)} class="hidden" type="file" name="files" multiple required /> */}
                                 <input onChange={(e) => {
                                     const files = e.currentTarget.files;
-                                    const fileSizeExceedsLimit = Array.from(files).some(file => file.size > 1024 * 1024 * 1024); // 1 GB w bajtach
-
-                                    if (fileSizeExceedsLimit) {
-                                        alert("One or more files exceed the 1 GB size limit. Please upload files smaller than 1 GB.");
-                                        e.currentTarget.value = null;
+                                    
+                                    const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
+                                    
+                                    if (totalSize > 1024 * 1024 * 1024) {
+                                        setErrorMessage("Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.");
                                     } else {
                                         setFiles(files);
+                                        setErrorMessage("");
                                     }
                                 }} class="hidden" type="file" name="files" multiple required />
 
                                 <p>Click to select files or drag and drop here</p>
                             </label>
+                        )}
+                        {errorMessage && (
+                            <>
+                                <div class="my-2 mx-28"></div>
+                                <p className="text-md text-center text-red-500">{errorMessage}</p>
+                            </>
                         )}
                         {files && files.length > 0 && (
                             <>

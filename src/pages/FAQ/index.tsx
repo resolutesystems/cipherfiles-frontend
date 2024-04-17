@@ -1,60 +1,79 @@
-import { gsap } from 'gsap'
-import { h, Component } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
-import { File } from '../../components/File';
-import { Button } from '../../components/Button';
-import { Link } from 'preact-router/match';
-import styles from './header.module.scss'
-// import File from '../../components/File'; // Popraw ścieżkę do komponentu File
-// import Button from '../../components/Button'; // Popraw ścieżkę do komponentu Button
-// Importuj funkcję enhance z odpowiedniego miejsca
+import { useEffect } from 'preact/hooks';
+import { gsap } from 'gsap';
+import './faq.css';
 
 export function FAQ() {
-    const [state, setState] = useState<"selecting" | "uploading" | "uploaded">("selecting");
-    const [downloadUrl, setDownloadUrl] = useState<string>("");
-    const [files, setFiles] = useState<FileList | null>(null);
-	const [hamburgerOpen, setHamburgerOpen] = useState(false)
-
     useEffect(() => {
-        gsap.fromTo('#gay', {
-            translateX: '-=100',
-        }, {
-            translateX: '0', duration: .3, ease: 'back', stagger: .2,
-        })
-    })
+        const faqItems = document.querySelectorAll('.styles_step__4Kvjl');
 
-    const copyDownloadUrl = () => {
-        if (downloadUrl) {
-            navigator.clipboard.writeText(downloadUrl);
-            alert("Copied download url to clipboard!");
-        }
-    };
+        faqItems.forEach(item => {
+            const whitebar = item.querySelector('.white-bar');
 
-    const startUpload = () => {
-        // Implementacja logiki przesyłania plików
-    };
+            const handleMouseEnter = () => {
+                item.setAttribute('data-open', 'true');
+                if (whitebar) {
+                    whitebar.classList.add('styles_stepLine__DJI6a');
+                }
+            };
+
+            const handleMouseLeave = () => {
+                item.setAttribute('data-open', 'false');
+                if (whitebar) {
+                    whitebar.classList.remove('styles_stepLine__DJI6a');
+                }
+            };
+
+            item.addEventListener('mouseenter', handleMouseEnter);
+            item.addEventListener('mouseleave', handleMouseLeave);
+
+            return () => {
+                item.removeEventListener('mouseenter', handleMouseEnter);
+                item.removeEventListener('mouseleave', handleMouseLeave);
+            };
+        });
+    }, []);
 
     return (
-        <div id={"gay"}>
+        <div id="gay">
             <h2 class="text-center font-bold text-3xl mb-2">FAQ</h2>
-            <ul class="flex flex-col gap-5">
-                <li>
-                    <p class="text-xl font-medium mb-1">Who has the decryption key?</p>
-                    <p class="font-light">Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it beacuse we can't recover it.</p>
-                </li>
-                <li>
-                    <p class="text-xl font-medium mb-1">What data do you collect?</p>
-                    <p class="font-light">We do not store any data about you nor how you use the service. You can read more at <a class="link" href="/terms-of-service">terms of service</a>.</p>
-                </li>
-                <li>
-                    <p class="text-xl font-medium mb-1">Someone uploaded illegal content</p>
-                    <p class="font-light">If someone sent you a download link with illegal content, you are obligated to report it through <a class="link" href="/report-abuse">report abuse</a> form!</p>
-                </li>
-                <li>
-                    <p class="text-xl font-medium mb-1">Why it takes so long to upload/download encrypted files?</p>
-                    <p class="font-light">The main reason behind this is encryption and decryption, which can take long time with large files. Aswell as limited server resources.</p>
-                </li>
-            </ul>
+            <div class="styles_interview__mQG9_">
+                {faqItemsData.map((item, index) => (
+                    <FAQItem key={index} {...item} />
+                ))}
+            </div>
         </div>
     );
-};
+}
+
+const faqItemsData = [
+    {
+        title: 'Who has the decryption key?',
+        description: `Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.`,
+    },
+    {
+        title: 'What data do you collect?',
+        description: `We do not store any data about you nor how you use the service. You can read more at <a class="text-accent link" href="/terms-of-service">terms of service</a>.`,
+    },
+    {
+        title: 'Someone uploaded illegal content',
+        description: 'If someone sent you a download link with illegal content, you are obligated to report it through <a class="text-accent link" href="/report-abuse">report abuse</a> form!',
+    },
+    {
+        title: 'Why it takes so long to upload/download encrypted files?',
+        description: 'The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.',
+    },
+];
+
+function FAQItem({ title, description }) {
+    return (
+        <div itemprop="mainEntity" itemtype="https://schema.org/Question" data-open="false" class="styles_step__4Kvjl">
+            <div itemprop="name" class="styles_stepTitle__ZgLM3">
+                <h3>{title}</h3>
+                <div class="white-bar"></div>
+            </div>
+            <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="styles_stepDescription__hZOUZ" dangerouslySetInnerHTML={{ __html: description }} >
+                <p>{description}</p>
+            </div>
+        </div>
+    );
+}
