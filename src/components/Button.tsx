@@ -3,7 +3,7 @@ import { useState } from 'preact/hooks';
 
 interface Props {
     text: string;
-    onClick?: (event: Event) => void; // Dodaj argument event: Event
+    onClick?: (event: Event) => void;
     disabled?: boolean;
     restProps?: any;
 }
@@ -15,12 +15,12 @@ export function Button({ text, onClick, disabled, restProps }: Props) {
 
     const handleClick = (event: Event) => {
         if (onClick) {
-            onClick(event); // Przekaż argument event do funkcji onClick
+            onClick(event);
         }
     };
 
     const inputProps = {
-        onClick: handleClick, // Użyj nowej funkcji handleClick
+        onClick: handleClick,
         class: classString,
         type: "submit",
         value: text,

@@ -4,7 +4,6 @@ import { LocationProvider, Router, Route } from 'preact-iso';
 
 import AsyncRoute from 'preact-async-route';
 import { gsap } from 'gsap'
-import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home/index';
 import { Tos } from './pages/Tos/index';
@@ -36,18 +35,9 @@ export function App() {
 
 	return (
 		<LocationProvider>
-			{/* <main>
-				<Router>
-					<Route path="/" component={Home} />
-					<Route default component={NotFound} />
-					<Route path="/test" component={Test} />
-				</Router>
-			</main>
-			<Footer /> */}
 			<div class="bg-[#0A0A0A] min-h-screen flex items-center justify-center text-white py-5">
 				<div class="flex flex-col items-center gap-5 w-[490px] text-lg">
-					{/* change href to "/" after testing */}
-					<a href="/testing"><img id={"home"} src={CF}/></a>
+					<a href="/"><img id={"home"} src={CF}/></a>
 					<br/>
 					<div id={"home"} class="flex flex-col border border-white border-[1px] p-8 rounded-lg w-full">
 						<main>
@@ -56,8 +46,7 @@ export function App() {
 								<AsyncRoute path="/tos" component={Tos} />
 								<AsyncRoute path="/report-abuse" component={ReportAbuse} />
 								<AsyncRoute path="/faq" component={FAQ} />
-								{/* Remove it after */}
-								<AsyncRoute path="/testing" component={Testing} />
+								{/* <AsyncRoute path="/testing" component={Testing} /> */}
 								<NotFound default />
 							</Router>
 						</main>
