@@ -21,7 +21,7 @@ export function Footer() {
                 <li><a class="text-neutral-500" href="/faq">faq</a></li>
                 <li><a class="text-neutral-500" href="https://t.me/cipherfiles" target="_blank" rel="noopener noreferrer">our community</a></li>
             </ul>
-            {/* <p class="text-neutral-500 text-sm">site by @st47n</p> */}
+            <p class="text-neutral-500 text-sm">Service provided by showergood & haust</p>
         </div>
     );
 }

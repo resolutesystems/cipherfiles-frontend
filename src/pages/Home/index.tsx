@@ -7,6 +7,7 @@ import styles from './header.module.scss'
 export function Home() {
     const [state, setState] = useState<"selecting" | "uploading" | "uploaded">("selecting");
     const [downloadUrl, setDownloadUrl] = useState<string>("");
+    const [deleteUrl, setDeleteUrl] = useState<string>("");
     const [files, setFiles] = useState<FileList | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -18,37 +19,49 @@ export function Home() {
         }
     };
 
+    const copyDeleteUrl = () => {
+        if (deleteUrl) {
+            navigator.clipboard.writeText(deleteUrl);
+            alert("Copied delete url to clipboard!");
+        }
+    };
+
     const startUpload = async (event: Event) => {
         event.preventDefault();
         const formData = new FormData();
-
-        for (let i = 0; i < files!.length; i++) {
-            formData.append(`file${i}`, files![i]);
-        }
-
-        try {
-            const response = await fetch('http://127.0.0.1:3000/upload?encrypt=false', {
-                method: 'POST',
-                body: formData,
-                credentials: "include",
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                console.log('Pliki zostały wysłane pomyślnie.');
-                setState("uploaded");
-                // cos
-            } else {
-                console.error('Wystąpił błąd podczas wysyłania plików:', response.statusText);
-                // cos
+        setState("uploading")
+    
+        if (files) {
+            for (let i = 0; i < files.length; i++) {
+                formData.append('file', files[i]);
             }
-        } catch (error) {
-            console.error('Wystąpił nieoczekiwany błąd:', error);
-            // cos
+    
+            try {
+                const response = await fetch('http://127.0.0.1:3000/upload?encrypt=false', {
+                    method: 'POST',
+                    body: formData,
+                    credentials: "include"
+                });
+    
+                if (response.ok) {
+                    const responseData = await response.json();
+                    setState("uploaded");
+                    setDownloadUrl(`http://localhost:5173/download/${responseData.id}`)
+                    setDeleteUrl(`http://localhost:5173/delete/${responseData.delete_key}`)
+                } else {
+                    console.error('There was an error while uploading files:', response.statusText);
+                    setErrorMessage(response.statusText)
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                // Additional error handling
+            }
+        } else {
+            console.error('No files selected for upload.');
         }
     };
+    
+    
 
     const handleDragOver = (event: DragEvent) => {
         event.preventDefault();
@@ -142,18 +155,25 @@ export function Home() {
                         {files && files.length > 0 && state !== "uploading" && (
                             <>
                                 <div class="my-3 mx-28"></div>
-                                <Button text="Start upload" onClick={startUpload} />
+                                <Button text="Upload" onClick={startUpload} />
                             </>
                         )}
                     </form>
                 </div>
             ) : (
                 <div>
-                    <h1 class="text-center text-3xl font-bold mb-6">Files uploaded</h1>
-                    <button onClick={copyDownloadUrl} class="bg-neutral-800 px-3 py-3 rounded-md w-full text-left break-all">
+                    <h1 class="text-center text-3xl font-bold mb-6">File uploaded</h1>
+                    <p class="text-white/50 text-md">Download link</p>
+                    <div class="h-[3px] mx-28"></div>
+                    <button onClick={copyDownloadUrl} class="border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all">
                         {downloadUrl}
                     </button>
-                    <div class="h-[2px] bg-neutral-800 my-5 mx-28"></div>
+                    <div class="h-[1px] my-2 mx-28"></div>
+                    <p class="text-white/50 text-md">Delete link</p>
+                    <div class="h-[3px] mx-28"></div>
+                    <button onClick={copyDeleteUrl} class="border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all">
+                        {deleteUrl}
+                    </button>
                 </div>
             )}
         </div>
