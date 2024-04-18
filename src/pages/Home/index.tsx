@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { useState } from 'preact/hooks';
 import { File } from '../../components/File';
 import { Button } from '../../components/Button';
