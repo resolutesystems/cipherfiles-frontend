@@ -89,6 +89,20 @@ export function Home() {
         }
     };
 
+    const removeFile = (index: number) => {
+        const updatedFiles = Array.from(files || []);
+        updatedFiles.splice(index, 1);
+    
+        // Konwertujemy tablicę plików na FileList
+        const dataTransfer = new DataTransfer();
+        updatedFiles.forEach(file => {
+            dataTransfer.items.add(file);
+        });
+    
+        // Aktualizujemy stan plików
+        setFiles(dataTransfer.files);
+    };
+
     useEffect(() => {
         const label = document.getElementById("drop-label");
         if (label) {
@@ -121,7 +135,7 @@ export function Home() {
                         {files && files.length > 0 && (
 							<div id={"file"} class="flex flex-col gap-2 mb-5">
 								{Array.from(files).map((file, index) => (
-									<File name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} />
+									<File name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} onRemove={() => removeFile(index)} />
 								))}
 							</div>
 						)}
@@ -141,7 +155,7 @@ export function Home() {
                                         setFiles(files);
                                         setErrorMessage("");
                                     }
-                                }} class="hidden" type="file" name="files" multiple required />
+                                }} class="hidden" type="file" name="files" required />
 
                                 <p>Click to select files or drag and drop here</p>
                             </label>
