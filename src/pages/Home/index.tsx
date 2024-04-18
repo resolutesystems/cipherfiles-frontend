@@ -1,9 +1,8 @@
-import { gsap } from 'gsap'
-import { h, Component } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { h } from 'preact';
+import { useState } from 'preact/hooks';
 import { File } from '../../components/File';
 import { Button } from '../../components/Button';
-import { Link } from 'preact-router/match';
+import { useEffect } from 'preact/hooks';
 import styles from './header.module.scss'
 
 export function Home() {
@@ -20,8 +19,36 @@ export function Home() {
         }
     };
 
-    const startUpload = () => {
-        // Implementacja logiki przesyłania plików
+    const startUpload = async (event: Event) => {
+        event.preventDefault();
+        const formData = new FormData();
+
+        for (let i = 0; i < files!.length; i++) {
+            formData.append(`file${i}`, files![i]);
+        }
+
+        try {
+            const response = await fetch('http://127.0.0.1:3000/upload?encrypt=false', {
+                method: 'POST',
+                body: formData,
+                credentials: "include",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                console.log('Pliki zostały wysłane pomyślnie.');
+                setState("uploaded");
+                // cos
+            } else {
+                console.error('Wystąpił błąd podczas wysyłania plików:', response.statusText);
+                // cos
+            }
+        } catch (error) {
+            console.error('Wystąpił nieoczekiwany błąd:', error);
+            // cos
+        }
     };
 
     const handleDragOver = (event: DragEvent) => {
@@ -71,7 +98,6 @@ export function Home() {
             };
         }
     }, []);
-    
 
     return (
         <div id={"gay"}>
@@ -92,7 +118,6 @@ export function Home() {
                             onDragOver={handleDragOver}
                             onDragLeave={handleDragLeave}
                             onDrop={handleDrop}>
-                                {/* <input onChange={(e) => setFiles(e.currentTarget.files)} class="hidden" type="file" name="files" multiple required /> */}
                                 <input onChange={(e) => {
                                     const files = e.currentTarget.files;
                                     
@@ -115,10 +140,10 @@ export function Home() {
                                 <p className="text-md text-center text-red-500">{errorMessage}</p>
                             </>
                         )}
-                        {files && files.length > 0 && (
+                        {files && files.length > 0 && state !== "uploading" && (
                             <>
                                 <div class="my-3 mx-28"></div>
-                                <Button text={state === "uploading" ? "Upload in progress" : "Start upload"} disabled={state === "uploading"} onClick={startUpload} />
+                                <Button text="Start upload" onClick={startUpload} />
                             </>
                         )}
                     </form>

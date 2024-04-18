@@ -3,9 +3,9 @@ import { useState } from 'preact/hooks';
 
 interface Props {
     text: string;
-    onClick?: () => void;
+    onClick?: (event: Event) => void; // Dodaj argument event: Event
     disabled?: boolean;
-    restProps?: any; // lub inny typ, który będzie pasował do przekazywanych atrybutów HTML
+    restProps?: any;
 }
 
 export function Button({ text, onClick, disabled, restProps }: Props) {
@@ -13,8 +13,14 @@ export function Button({ text, onClick, disabled, restProps }: Props) {
 
     const classString = `${clazz} whiteshadow text-white py-2 rounded-lg cursor-pointer border transition-colors ${disabled ? 'disabled:cursor-not-allowed' : ''}`;
 
+    const handleClick = (event: Event) => {
+        if (onClick) {
+            onClick(event); // Przekaż argument event do funkcji onClick
+        }
+    };
+
     const inputProps = {
-        onClick,
+        onClick: handleClick, // Użyj nowej funkcji handleClick
         class: classString,
         type: "submit",
         value: text,
