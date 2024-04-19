@@ -1,19 +1,7 @@
 import { gsap } from 'gsap'
-import { h, Component } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
-import { File } from '../../components/File';
-import { Button } from '../../components/Button';
-import { Link } from 'preact-router/match';
-import styles from './header.module.scss'
-// import File from '../../components/File'; // Popraw ścieżkę do komponentu File
-// import Button from '../../components/Button'; // Popraw ścieżkę do komponentu Button
-// Importuj funkcję enhance z odpowiedniego miejsca
+import { useEffect } from 'preact/hooks';
 
 export function Tos() {
-    const [state, setState] = useState<"selecting" | "uploading" | "uploaded">("selecting");
-    const [downloadUrl, setDownloadUrl] = useState<string>("");
-    const [files, setFiles] = useState<FileList | null>(null);
-	const [hamburgerOpen, setHamburgerOpen] = useState(false)
 
     useEffect(() => {
         gsap.fromTo('#gay', {
@@ -22,17 +10,6 @@ export function Tos() {
             translateX: '0', duration: .3, ease: 'back', stagger: .2,
         })
     })
-
-    const copyDownloadUrl = () => {
-        if (downloadUrl) {
-            navigator.clipboard.writeText(downloadUrl);
-            alert("Copied download url to clipboard!");
-        }
-    };
-
-    const startUpload = () => {
-        // Implementacja logiki przesyłania plików
-    };
 
     return (
         <div id={"gay"}>

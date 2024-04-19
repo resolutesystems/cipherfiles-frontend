@@ -47,8 +47,8 @@ export function Home() {
                 if (response.ok) {
                     const responseData = await response.json();
                     setState("uploaded");
-                    setDownloadUrl(`http://${WEBSITE_URL}/download/${responseData.id}`)
-                    setDeleteUrl(`http://${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
+                    setDownloadUrl(`${WEBSITE_URL}/download/${responseData.id}`)
+                    setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
                 } else {
                     console.error('There was an error while uploading files:', response.statusText);
                     setErrorMessage(response.statusText)

@@ -1,24 +1,33 @@
 import { useEffect } from 'preact/hooks';
-import './faq.css';
+import { gsap } from 'gsap';
+import styles from './faq.module.scss';
 
 export function FAQ() {
     useEffect(() => {
-        const faqItems = document.querySelectorAll('.styles_step__4Kvjl');
+        gsap.fromTo('#gay', {
+            translateX: '-=100',
+        }, {
+            translateX: '0', duration: .3, ease: 'back', stagger: .2,
+        })
+    })
+
+    useEffect(() => {
+        const faqItems = document.querySelectorAll(`.${styles.step}`);
 
         faqItems.forEach(item => {
-            const whitebar = item.querySelector('.white-bar');
+            const whitebar = item.querySelector(`.white-bar`);
 
             const handleMouseEnter = () => {
                 item.setAttribute('data-open', 'true');
                 if (whitebar) {
-                    whitebar.classList.add('styles_stepLine__DJI6a');
+                    whitebar.classList.add(styles.stepLine);
                 }
             };
 
             const handleMouseLeave = () => {
                 item.setAttribute('data-open', 'false');
                 if (whitebar) {
-                    whitebar.classList.remove('styles_stepLine__DJI6a');
+                    whitebar.classList.remove(styles.stepLine);
                 }
             };
 
@@ -33,9 +42,9 @@ export function FAQ() {
     }, []);
 
     return (
-        <div id="gay">
+        <div id={"gay"}>
             <h2 class="text-center font-bold text-3xl mb-2">FAQ</h2>
-            <div class="styles_interview__mQG9_">
+            <div class={styles.interview}>
                 {faqItemsData.map((item, index) => (
                     <FAQItem key={index} {...item} />
                 ))}
@@ -65,12 +74,12 @@ const faqItemsData = [
 
 function FAQItem({ title, description }) {
     return (
-        <div itemprop="mainEntity" itemtype="https://schema.org/Question" data-open="false" class="styles_step__4Kvjl">
-            <div itemprop="name" class="styles_stepTitle__ZgLM3">
+        <div itemprop="mainEntity" itemtype="https://schema.org/Question" data-open="false" class={styles.step}>
+            <div itemprop="name" class={styles.stepTitle}>
                 <h3>{title}</h3>
                 <div class="white-bar"></div>
             </div>
-            <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class="styles_stepDescription__hZOUZ" dangerouslySetInnerHTML={{ __html: description }} >
+            <div itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" class={styles.description} dangerouslySetInnerHTML={{ __html: description }} >
                 <p>{description}</p>
             </div>
         </div>

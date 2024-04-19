@@ -9,7 +9,7 @@ import { Home } from './pages/Home/index';
 import { Tos } from './pages/Tos/index';
 import { ReportAbuse } from './pages/ReportAbuse/index';
 import { NotFound } from './pages/_404';
-import './style.css';
+import './style.scss';
 import CF from './assets/cipher-files-white.png';
 import { FAQ } from './pages/FAQ';
 import { Testing } from './pages/Testing';
