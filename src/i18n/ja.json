@@ -1,0 +1,11 @@
+{
+    "Cipher Files": "Cipher Files",
+
+    "Terms of Service": "利用規約",
+    "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "プライバシーを尊重し、共有の自由を大切にしているため、できるだけ少ない制限を目指しています。",
+    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "サービスの脆弱性を悪用しないでください。もし何か見つけたら、<a href=\"/report-abuse\">報告してください</a>。",
+    "Uploading illegal or copyrighted content is forbidden.": "違法または著作権のあるコンテンツのアップロードは禁止されています。",
+
+    "Privacy Policy": "プライバシーポリシー",
+    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "私たちはデータを収集せず、クッキーを使用せず、分析を行わず、広告を表示せず、ログを保持しません。サービスにアップロードされたすべてのファイルは、解読不可能な暗号を使用して暗号化でき、解読キーを所有するのはあなただけです。"
+}
