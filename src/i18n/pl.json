@@ -1,11 +1,52 @@
 {
     "Cipher Files": "Cipher Files",
 
+    "home": "strona główna",
+    "tos": "tos",
+    "report abuse": "zgłoś nadużycie",
+    "faq": "faq",
+    "our community": "nasza społeczność",
+
+    "Upload your files": "Prześlij swoje pliki",
+    "Maximum upload file size: <strong>1 GB</strong>": "Maksymalny rozmiar przesyłanego pliku: <strong>1 GB</strong>",
+    "Click to select files or drag and drop here": "Kliknij, aby wybrać pliki lub przeciągnij i upuść tutaj",
+
+    "Copied download url to clipboard!": "Skopiowano adres URL pobierania do schowka!",
+    "Copied delete url to clipboard!": "Skopiowano adres URL usuwania do schowka!",
+
+    "404: Not Found": "404: Nie znaleziono",
+
+    "You can only upload one file at a time.": "Można przesłać tylko jeden plik naraz.",
+    "Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.": "Całkowity rozmiar plików przekracza limit 1 GB. Prześlij pliki mniejsze niż 1 GB.",
+    "File uploaded": "Plik przesłany",
+    "Download link": "Link do pobrania",
+    "Delete link": "Link do usunięcia",
+
     "Terms of Service": "Warunki użytkowania",
     "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "Ponieważ dbamy o prywatność i cenimy swobodę udostępniania, dążymy do jak najmniejszej liczby ograniczeń:",
     "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Nie nadużywaj exploitów usług, jeśli znajdziesz jakieś <a href=\"/report-abuse\">zgłoś to.</a>.",
     "Uploading illegal or copyrighted content is forbidden.": "Przesyłanie nielegalnych lub chronionych prawem autorskim treści jest zabronione.",
 
     "Privacy Policy": "Polityka prywatności",
-    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "Nie gromadzimy danych, nie używamy plików cookie, nie stosujemy analiz, nie wyświetlamy reklam ani nie prowadzimy dzienników. Wszystkie pliki przesyłane do usługi mogą być szyfrowane przy użyciu niemożliwego do złamania szyfru, a klucz deszyfrujący posiada tylko użytkownik."
+    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "Nie gromadzimy danych, nie używamy plików cookie, nie stosujemy analiz, nie wyświetlamy reklam ani nie prowadzimy dzienników. Wszystkie pliki przesyłane do usługi mogą być szyfrowane przy użyciu niemożliwego do złamania szyfru, a klucz deszyfrujący posiada tylko użytkownik.",
+
+    "Report Abuse": "Zgłoś nadużycie",
+    "If you want to report illegal or copyrighted content, please email us at": "Jeśli chcesz zgłosić nielegalne lub chronione prawem autorskim treści, napisz do nas na adres",
+    "Remember to include as much information as possible, including the full download URL (with decryption key) and a description of the content.": "Pamiętaj, aby dołączyć jak najwięcej informacji, w tym pełny adres URL pobierania (z kluczem deszyfrującym) i opis zawartości.",
+
+    "Who has the decryption key?": "Kto posiada klucz deszyfrujący?",
+    "Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.": "Klucz deszyfrujący jest podawany w adresie URL po przesłaniu zaszyfrowanych plików. Nie przechowujemy tego klucza nigdzie na naszych serwerach, więc musisz o niego zadbać, ponieważ nie możemy go odzyskać.",
+    "What data do you collect?": "Jakie dane są zbierane?",
+    "We do not store any data about you nor how you use the service. You can read more at <a class=\"text-accent link\" href=\"/terms-of-service\">terms of service</a>.": "Nie przechowujemy żadnych danych o użytkowniku ani o sposobie korzystania przez niego z usługi. Więcej informacji można znaleźć w <a class=\"text-accent link\" href=\"/terms-of-service\">warunkach korzystania z usługi</a>.",
+    "Someone uploaded illegal content": "Ktoś przesłał nielegalną zawartość",
+    "If someone sent you a download link with illegal content, you are obligated to report it through <a class=\"text-accent link\" href=\"/report-abuse\">report abuse</a> form!": "Jeśli ktoś wysłał ci link do pobrania zawierający nielegalne treści, masz obowiązek zgłosić to za pośrednictwem formularza <a class=\"text-accent link\" href=\"/report-abuse\">zgłoś nadużycie</a>!",
+    "Why it takes so long to upload/download encrypted files?": "Dlaczego przesyłanie/pobieranie zaszyfrowanych plików trwa tak długo?",
+    "The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.": "Głównym tego powodem jest szyfrowanie i deszyfrowanie, które może zająć dużo czasu w przypadku dużych plików. Jak również ograniczone zasoby serwera.",
+
+    "An error occurred while deleting the file.": "Wystąpił błąd podczas usuwania plików.",
+    "Remove your files": "Usuń swoje pliki",
+    "Upload ID": "ID Pliku",
+    "Delete key": "Klucz usuwania",
+    "Confirm": "Potwierdź",
+    "Deleting...": "Usuwanie..."
 }

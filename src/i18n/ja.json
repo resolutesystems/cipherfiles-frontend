@@ -1,11 +1,52 @@
 {
     "Cipher Files": "Cipher Files",
 
+    "home": "ホーム",
+    "tos": "利用規約",
+    "report abuse": "乱用を報告する",
+    "faq": "よくある質問",
+    "our community": "私たちのコミュニティ",
+
+    "Upload your files": "ファイルをアップロードしてください",
+    "Maximum upload file size: <strong>1 GB</strong>": "最大アップロードファイルサイズ：<strong>1 GB</strong>",
+    "Click to select files or drag and drop here": "ファイルを選択するにはクリックしてください、またはここにドラッグアンドドロップしてください。",
+
+    "Copied download url to clipboard!": "ダウンロードURLをクリップボードにコピーしました！",
+    "Copied delete url to clipboard!": "削除URLをクリップボードにコピーしました！",
+
+    "404: Not Found": "404: 見つかりません",
+
+    "You can only upload one file at a time.": "一度に1つのファイルしかアップロードできません。",
+    "Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.": "総ファイルサイズが1 GBの制限を超えています。1 GBより小さいファイルをアップロードしてください。",
+    "File uploaded": "ファイルがアップロードされました",
+    "Download link": "ダウンロードリンク",
+    "Delete link": "削除リンク",
+
     "Terms of Service": "利用規約",
     "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "プライバシーを尊重し、共有の自由を大切にしているため、できるだけ少ない制限を目指しています。",
     "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "サービスの脆弱性を悪用しないでください。もし何か見つけたら、<a href=\"/report-abuse\">報告してください</a>。",
     "Uploading illegal or copyrighted content is forbidden.": "違法または著作権のあるコンテンツのアップロードは禁止されています。",
 
     "Privacy Policy": "プライバシーポリシー",
-    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "私たちはデータを収集せず、クッキーを使用せず、分析を行わず、広告を表示せず、ログを保持しません。サービスにアップロードされたすべてのファイルは、解読不可能な暗号を使用して暗号化でき、解読キーを所有するのはあなただけです。"
+    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "私たちはデータを収集せず、クッキーを使用せず、分析を行わず、広告を表示せず、ログを保持しません。サービスにアップロードされたすべてのファイルは、解読不可能な暗号を使用して暗号化でき、解読キーを所有するのはあなただけです。",
+
+    "Report Abuse": "乱用を報告する",
+    "If you want to report illegal or copyrighted content, please email us at": "違法または著作権のあるコンテンツを報告したい場合は、以下のアドレスまでメールでご連絡ください。",
+    "Remember to include as much information as possible, including the full download URL (with decryption key) and a description of the content.": "できるだけ多くの情報を含めてください。フルのダウンロードURL（複合キー付き）とコンテンツの説明を含めてください。",
+
+    "Who has the decryption key?": "復号化キーは誰が持っていますか？",
+    "Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.": "復号化キーは、暗号化されたファイルをアップロードした後にURLで提供されます。私たちはキーをサーバーのどこにも保存していないため、それを大切に保管する必要があります。なぜなら、私たちはそれを回復することができないからです。",
+    "What data do you collect?": "どのようなデータを収集していますか？",
+    "We do not store any data about you nor how you use the service. You can read more at <a class=\"text-accent link\" href=\"/terms-of-service\">terms of service</a>.": "私たちは、あなたやサービスの利用方法に関するデータを一切保存していません。詳細は<a class=\"text-accent link\" href=\"/terms-of-service\">利用規約</a>をご覧ください。",
+    "Someone uploaded illegal content": "誰かが違法なコンテンツをアップロードしました",
+    "If someone sent you a download link with illegal content, you are obligated to report it through <a class=\"text-accent link\" href=\"/report-abuse\">report abuse</a> form!": "もし誰かが違法なコンテンツを含むダウンロードリンクを送ってきた場合、<a class=\"text-accent link\" href=\"/report-abuse\">乱用の報告</a>フォームを通じて報告する義務があります！",
+    "Why it takes so long to upload/download encrypted files?": "なぜ暗号化されたファイルのアップロード/ダウンロードに時間がかかるのですか？",
+    "The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.": "これには、大きなファイルでは時間がかかる暗号化と復号化、および限られたサーバーリソースが原因です。",
+
+    "An error occurred while deleting the file.": "ファイルを削除中にエラーが発生しました。",
+    "Remove your files": "あなたのファイルを削除してください",
+    "Upload ID": "アップロードID",
+    "Delete key": "削除キー",
+    "Confirm": "確認する",
+    "Deleting...": "削除中..."
 }

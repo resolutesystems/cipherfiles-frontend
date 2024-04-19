@@ -1,8 +1,30 @@
 import { useEffect } from 'preact/hooks';
 import { gsap } from 'gsap';
 import styles from './faq.module.scss';
+import { useTranslations } from '../../components/i18n';
 
 export function FAQ() {
+    const { translatedText } = useTranslations();
+    
+    const faqItemsData = [
+        {
+            title: translatedText('Who has the decryption key?'),
+            description: translatedText(`Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.`),
+        },
+        {
+            title: translatedText('What data do you collect?'),
+            description: translatedText(`We do not store any data about you nor how you use the service. You can read more at <a class=\"text-accent link\" href=\"/terms-of-service\">terms of service</a>.`),
+        },
+        {
+            title: translatedText('Someone uploaded illegal content'),
+            description: translatedText('If someone sent you a download link with illegal content, you are obligated to report it through <a class="text-accent link" href="/report-abuse">report abuse</a> form!'),
+        },
+        {
+            title: translatedText('Why it takes so long to upload/download encrypted files?'),
+            description: translatedText('The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.'),
+        },
+    ];
+    
     useEffect(() => {
         gsap.fromTo('#gay', {
             translateX: '-=100',
@@ -43,7 +65,7 @@ export function FAQ() {
 
     return (
         <div id={"gay"}>
-            <h2 class="text-center font-bold text-3xl mb-2">FAQ</h2>
+            <h2 class="text-center font-bold text-3xl mb-2">{translatedText('faq').toUpperCase()}</h2>
             <div class={styles.interview}>
                 {faqItemsData.map((item, index) => (
                     <FAQItem key={index} {...item} />
@@ -53,24 +75,6 @@ export function FAQ() {
     );
 }
 
-const faqItemsData = [
-    {
-        title: 'Who has the decryption key?',
-        description: `Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.`,
-    },
-    {
-        title: 'What data do you collect?',
-        description: `We do not store any data about you nor how you use the service. You can read more at <a class="text-accent link" href="/terms-of-service">terms of service</a>.`,
-    },
-    {
-        title: 'Someone uploaded illegal content',
-        description: 'If someone sent you a download link with illegal content, you are obligated to report it through <a class="text-accent link" href="/report-abuse">report abuse</a> form!',
-    },
-    {
-        title: 'Why it takes so long to upload/download encrypted files?',
-        description: 'The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.',
-    },
-];
 
 function FAQItem({ title, description }) {
     return (

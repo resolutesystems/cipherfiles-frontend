@@ -1,8 +1,11 @@
 import { route } from 'preact-router';
 import { useState, useEffect } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
+import { useTranslations } from '../../components/i18n';
 
 export function DeletePage() {
+    const { translatedText } = useTranslations();
+
     const { params } = useRoute();
     const defaultUploadId = params.upload_id || '';
 
@@ -54,18 +57,18 @@ export function DeletePage() {
             setErrorMessage(data);
         }
         } catch (error) {
-            setErrorMessage('An error occurred while deleting the file.');
+            setErrorMessage(translatedText('An error occurred while deleting the file.'));
             console.error('Error occurred:', error);
         }
     };
 
     return (
         <div>
-        <h1 className="text-center text-3xl font-bold mb-1">Remove your files</h1>
+        <h1 className="text-center text-3xl font-bold mb-1">{translatedText('Remove your files')}</h1>
 
         <form onSubmit={handleConfirm} style={{ cursor: deleting ? 'not-allowed' : 'auto' }}>
         <div className="mb-4">
-            <label htmlFor="uploadId" className="text-white/50 text-md">Upload ID</label>
+            <label htmlFor="uploadId" className="text-white/50 text-md">{translatedText('Upload ID')}</label>
             <input
                 id="uploadId"
                 type="text"
@@ -76,7 +79,7 @@ export function DeletePage() {
             />
         </div>
         <div className="mb-4">
-            <label htmlFor="deleteKey" className="text-white/50 text-md">Delete key</label>
+            <label htmlFor="deleteKey" className="text-white/50 text-md">{translatedText('Delete key')}</label>
             <input
                 id="deleteKey"
                 type="text"
@@ -88,7 +91,7 @@ export function DeletePage() {
         </div>
             <div className="mb-6">
                 <button type="submit" className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-center break-all ${deleting ? 'cursor-not-allowed' : ''}`} disabled={deleting}>
-                    {deleting ? 'Deleting...' : 'Confirm'}
+                    {deleting ? translatedText('Deleting...') : translatedText('Confirm')}
                 </button>
             </div>
         </form>

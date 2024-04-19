@@ -1,8 +1,10 @@
 import { gsap } from 'gsap';
 import { useEffect } from 'preact/hooks';
 import { COMMUNITY_URL, FOOTER_QUOTE } from './helpers';
+import { useTranslations } from './i18n';
 
 export function Footer() {
+    const { translatedText } = useTranslations();
 
     useEffect(() => {
         gsap.fromTo('#footer', {
@@ -15,11 +17,11 @@ export function Footer() {
     return (
         <div id={"footer"}>
             <ul class="flex gap-3">
-                <a class="text-neutral-500" href="/">home</a>
-                <li><a class="text-neutral-500" href="/tos">tos</a></li>
-                <li><a class="text-neutral-500" href="/report-abuse">report abuse</a></li>
-                <li><a class="text-neutral-500" href="/faq">faq</a></li>
-                <li><a class="text-neutral-500" href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer">our community</a></li>
+                <a class="text-neutral-500" href="/">{translatedText('home')}</a>
+                <li><a class="text-neutral-500" href="/tos">{translatedText('tos')}</a></li>
+                <li><a class="text-neutral-500" href="/report-abuse">{translatedText('report abuse')}</a></li>
+                <li><a class="text-neutral-500" href="/faq">{translatedText('faq')}</a></li>
+                <li><a class="text-neutral-500" href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer">{translatedText('our community')}</a></li>
             </ul>
             <p class="text-neutral-500 text-sm">{FOOTER_QUOTE}</p>
         </div>

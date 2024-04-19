@@ -4,8 +4,10 @@ import { Button } from '../../components/Button';
 import { useEffect } from 'preact/hooks';
 import styles from './header.module.scss'
 import { WEBSITE_URL } from '../../components/helpers';
+import { useTranslations } from '../../components/i18n';
 
 export function Home() {
+    const { translatedText } = useTranslations();
     const [state, setState] = useState<"selecting" | "uploading" | "uploaded">("selecting");
     const [downloadUrl, setDownloadUrl] = useState<string>("");
     const [deleteUrl, setDeleteUrl] = useState<string>("");
@@ -16,14 +18,14 @@ export function Home() {
     const copyDownloadUrl = () => {
         if (downloadUrl) {
             navigator.clipboard.writeText(downloadUrl);
-            alert("Copied download url to clipboard!");
+            alert(translatedText('Copied download url to clipboard!'));
         }
     };
 
     const copyDeleteUrl = () => {
         if (deleteUrl) {
             navigator.clipboard.writeText(deleteUrl);
-            alert("Copied delete url to clipboard!");
+            alert(translatedText('Copied delete url to clipboard!'));
         }
     };
 
@@ -81,11 +83,11 @@ export function Home() {
         const files = event.dataTransfer.files;
     
         if (files.length > 1) {
-            setErrorMessage("You can only upload one file at a time.");
+            setErrorMessage(translatedText('You can only upload one file at a time.'));
         } else {
             const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
             if (totalSize > 1024 * 1024 * 1024) {
-                setErrorMessage("Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.");
+                setErrorMessage(translatedText('Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.'));
             } else {
                 setFiles(files);
                 setErrorMessage("");
@@ -131,8 +133,10 @@ export function Home() {
         <div id={"gay"}>
             {state === "selecting" || state === "uploading" ? (
                 <div>
-                    <h1 class="text-center text-3xl font-bold mb-1">Upload your files</h1>
-                    <p class="text-center text-neutral-300 mb-5 font-light">Maximum upload file size: <strong>1 GB</strong></p>
+                    <h1 class="text-center text-3xl font-bold mb-1">{translatedText('Upload your files')}</h1>
+                    <p class="text-center text-neutral-300 mb-5 font-light"
+                    dangerouslySetInnerHTML={{ __html: translatedText('Maximum upload file size: <strong>1 GB</strong>') }}
+                    />
                     <form class="flex flex-col" method="post" enctype="multipart/form-data">
                         {files && files.length > 0 && (
 							<div id={"file"} class="flex flex-col gap-2 mb-5">
@@ -152,14 +156,14 @@ export function Home() {
                                     const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
                                     
                                     if (totalSize > 1024 * 1024 * 1024) {
-                                        setErrorMessage("Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.");
+                                        setErrorMessage(translatedText('Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.'));
                                     } else {
                                         setFiles(files);
                                         setErrorMessage("");
                                     }
                                 }} class="hidden" type="file" name="files" required />
 
-                                <p>Click to select files or drag and drop here</p>
+                                <p>{translatedText('Click to select files or drag and drop here')}</p>
                             </label>
                         )}
                         {errorMessage && (
@@ -178,14 +182,14 @@ export function Home() {
                 </div>
             ) : (
                 <div>
-                    <h1 class="text-center text-3xl font-bold mb-6">File uploaded</h1>
-                    <p class="text-white/50 text-md">Download link</p>
+                    <h1 class="text-center text-3xl font-bold mb-6">{translatedText('File uploaded')}</h1>
+                    <p class="text-white/50 text-md">{translatedText('Download link')}</p>
                     <div class="h-[3px] mx-28"></div>
                     <button onClick={copyDownloadUrl} class="border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all">
                         {downloadUrl}
                     </button>
                     <div class="h-[1px] my-2 mx-28"></div>
-                    <p class="text-white/50 text-md">Delete link</p>
+                    <p class="text-white/50 text-md">{translatedText('Delete link')}</p>
                     <div class="h-[3px] mx-28"></div>
                     <button onClick={copyDeleteUrl} class="border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all">
                         {deleteUrl}
