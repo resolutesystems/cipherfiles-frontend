@@ -1,5 +1,5 @@
-export const API_URL = "http://127.0.0.1:8000";
-export const SELF_URL = "http://127.0.0.1:5173";
+export const API_URL = "http://127.0.0.1:3000";
+export const WEBSITE_URL = "http://localhost:5173";
 
 export function formatBytes(bytes: number, decimals = 2) {
     if (!+bytes) return "0 B"

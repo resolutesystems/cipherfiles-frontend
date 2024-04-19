@@ -3,6 +3,7 @@ import { File } from '../../components/File';
 import { Button } from '../../components/Button';
 import { useEffect } from 'preact/hooks';
 import styles from './header.module.scss'
+import { WEBSITE_URL } from '../../components/helpers';
 
 export function Testing() {
     const [state, setState] = useState<"selecting" | "uploading" | "uploaded">("selecting");
@@ -46,8 +47,8 @@ export function Testing() {
                 if (response.ok) {
                     const responseData = await response.json();
                     setState("uploaded");
-                    setDownloadUrl(`http://localhost:3000/download/${responseData.id}`)
-                    setDeleteUrl(`http://localhost:3000/delete/${responseData.delete_key}`)
+                    setDownloadUrl(`http://${WEBSITE_URL}/download/${responseData.id}`)
+                    setDeleteUrl(`http://${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
                 } else {
                     console.error('There was an error while uploading files:', response.statusText);
                     setErrorMessage(response.statusText)
@@ -79,13 +80,16 @@ export function Testing() {
         setIsDragging(false);
         const files = event.dataTransfer.files;
     
-        const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
-        
-        if (totalSize > 1024 * 1024 * 1024) {
-            setErrorMessage("Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.");
+        if (files.length > 1) {
+            setErrorMessage("You can only upload one file at a time.");
         } else {
-            setFiles(files);
-            setErrorMessage("");
+            const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
+            if (totalSize > 1024 * 1024 * 1024) {
+                setErrorMessage("Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.");
+            } else {
+                setFiles(files);
+                setErrorMessage("");
+            }
         }
     };
 
@@ -93,13 +97,11 @@ export function Testing() {
         const updatedFiles = Array.from(files || []);
         updatedFiles.splice(index, 1);
     
-        // Konwertujemy tablicę plików na FileList
         const dataTransfer = new DataTransfer();
         updatedFiles.forEach(file => {
             dataTransfer.items.add(file);
         });
     
-        // Aktualizujemy stan plików
         setFiles(dataTransfer.files);
     };
 

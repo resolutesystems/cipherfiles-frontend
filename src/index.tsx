@@ -1,6 +1,6 @@
 import { render } from 'preact';
 import { useEffect } from 'preact/hooks';
-import { LocationProvider, Router, Route } from 'preact-iso';
+import { LocationProvider, Router } from 'preact-iso';
 
 import AsyncRoute from 'preact-async-route';
 import { gsap } from 'gsap'
@@ -48,8 +48,8 @@ export function App() {
 								<AsyncRoute path="/report-abuse" component={ReportAbuse} />
 								<AsyncRoute path="/faq" component={FAQ} />
 								{/* <AsyncRoute path="/testing" component={Testing} /> */}
-								<NotFound default />
 								<AsyncRoute path="/delete/:upload_id" component={DeletePage}/>
+								<NotFound default />
 							</Router>
 						</main>
 					</div>

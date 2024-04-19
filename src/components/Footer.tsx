@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { gsap } from 'gsap';
 import { useEffect } from 'preact/hooks';
 

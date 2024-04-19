@@ -3,7 +3,7 @@ import { File } from '../../components/File';
 import { Button } from '../../components/Button';
 import { useEffect } from 'preact/hooks';
 import styles from './header.module.scss'
-import { WEBSITE_URL } from '../../components/config';
+import { WEBSITE_URL } from '../../components/helpers';
 
 export function Home() {
     const [state, setState] = useState<"selecting" | "uploading" | "uploaded">("selecting");

@@ -1,5 +1,4 @@
 import { useEffect } from 'preact/hooks';
-import { gsap } from 'gsap';
 import './faq.css';
 
 export function FAQ() {

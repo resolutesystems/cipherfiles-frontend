@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { formatBytes } from './helpers';
 import DocumentIcon from "../assets/icons/DocumentIcon";
 import XIcon from "../assets/icons/XIcon";

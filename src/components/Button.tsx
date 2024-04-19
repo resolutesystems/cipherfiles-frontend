@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function Button({ text, onClick, disabled, restProps }: Props) {
-    const [clazz, setClazz] = useState<string>("");
+    const [clazz] = useState<string>("");
 
     const classString = `${clazz} whiteshadow text-white py-2 rounded-lg cursor-pointer border transition-colors ${disabled ? 'disabled:cursor-not-allowed' : ''}`;
 
