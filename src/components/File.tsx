@@ -12,12 +12,17 @@ interface Props {
 
 export function File({ name, progress, size, canRemove, onRemove }: Props) {
     const lastDotIndex = name.lastIndexOf('.');
-    const fileExtension = lastDotIndex !== -1 ? name.slice(lastDotIndex + 1) : '';
+    let fileNameWithoutExtension = name;
+    let fileExtension = '';
 
-    let formattedName = name;
+    if (lastDotIndex !== -1 && lastDotIndex < name.length - 2) {
+        fileNameWithoutExtension = name.slice(0, lastDotIndex);
+        fileExtension = name.slice(lastDotIndex + 1);
+    }
+
+    let formattedName = fileNameWithoutExtension;
     const maxNameLength = 20;
-    if (name.length > maxNameLength) {
-        const fileNameWithoutExtension = lastDotIndex !== -1 ? name.slice(0, lastDotIndex) : name;
+    if (fileNameWithoutExtension.length > maxNameLength) {
         const remainingChars = maxNameLength - 5;
         formattedName = `${fileNameWithoutExtension.slice(0, remainingChars)}....`;
     }
@@ -42,3 +47,4 @@ export function File({ name, progress, size, canRemove, onRemove }: Props) {
         </div>
     );
 };
+
