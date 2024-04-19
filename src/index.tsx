@@ -1,19 +1,19 @@
 import { render } from 'preact';
 import { useEffect } from 'preact/hooks';
 import { LocationProvider, Router } from 'preact-iso';
-
-import AsyncRoute from 'preact-async-route';
 import { gsap } from 'gsap'
+import AsyncRoute from 'preact-async-route';
+
 import { Footer } from './components/Footer';
 import { Home } from './pages/Home/index';
 import { Tos } from './pages/Tos/index';
 import { ReportAbuse } from './pages/ReportAbuse/index';
-import { NotFound } from './pages/_404';
-import './style.scss';
-import CF from './assets/cipher-files-white.png';
 import { FAQ } from './pages/FAQ';
-import { Testing } from './pages/Testing';
 import { DeletePage } from './pages/Delete/index';
+import { NotFound } from './pages/_404';
+
+import Wordmark from './assets/cipher-files-white.png';
+import './style.scss';
 
 export function App() {
 
@@ -38,7 +38,7 @@ export function App() {
 		<LocationProvider>
 			<div class="bg-[#0A0A0A] min-h-screen flex items-center justify-center text-white py-5">
 				<div class="flex flex-col items-center gap-5 w-[490px] text-lg">
-					<a href="/"><img id={"home"} src={CF}/></a>
+					<a href="/"><img id={"home"} src={Wordmark}/></a>
 					<br/>
 					<div id={"home"} class="flex flex-col border border-white border-[1px] p-8 rounded-lg w-full">
 						<main>
@@ -47,7 +47,6 @@ export function App() {
 								<AsyncRoute path="/tos" component={Tos} />
 								<AsyncRoute path="/report-abuse" component={ReportAbuse} />
 								<AsyncRoute path="/faq" component={FAQ} />
-								{/* <AsyncRoute path="/testing" component={Testing} /> */}
 								<AsyncRoute path="/delete/:upload_id" component={DeletePage}/>
 								<NotFound default />
 							</Router>

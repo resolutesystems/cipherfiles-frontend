@@ -1,5 +1,8 @@
 export const API_URL = "http://127.0.0.1:3000";
 export const WEBSITE_URL = "http://localhost:5173";
+export const COMMUNITY_URL = "https://t.me/cipherfiles";
+export const FOOTER_QUOTE = "Service provided by showergood & haust";
+export const ABUSE_EMAIL = "abuse@cipherfiles.com";
 
 export function formatBytes(bytes: number, decimals = 2) {
     if (!+bytes) return "0 B"

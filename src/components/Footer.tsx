@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
 import { useEffect } from 'preact/hooks';
+import { COMMUNITY_URL, FOOTER_QUOTE } from './helpers';
 
 export function Footer() {
 
@@ -18,9 +19,9 @@ export function Footer() {
                 <li><a class="text-neutral-500" href="/tos">tos</a></li>
                 <li><a class="text-neutral-500" href="/report-abuse">report abuse</a></li>
                 <li><a class="text-neutral-500" href="/faq">faq</a></li>
-                <li><a class="text-neutral-500" href="https://t.me/cipherfiles" target="_blank" rel="noopener noreferrer">our community</a></li>
+                <li><a class="text-neutral-500" href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer">our community</a></li>
             </ul>
-            <p class="text-neutral-500 text-sm">Service provided by showergood & haust</p>
+            <p class="text-neutral-500 text-sm">{FOOTER_QUOTE}</p>
         </div>
     );
 }
