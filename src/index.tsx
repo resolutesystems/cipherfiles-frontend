@@ -13,6 +13,7 @@ import './style.css';
 import CF from './assets/cipher-files-white.png';
 import { FAQ } from './pages/FAQ';
 import { Testing } from './pages/Testing';
+import { DeletePage } from './pages/Delete/index';
 
 export function App() {
 
@@ -48,6 +49,7 @@ export function App() {
 								<AsyncRoute path="/faq" component={FAQ} />
 								{/* <AsyncRoute path="/testing" component={Testing} /> */}
 								<NotFound default />
+								<AsyncRoute path="/delete/:upload_id" component={DeletePage}/>
 							</Router>
 						</main>
 					</div>
