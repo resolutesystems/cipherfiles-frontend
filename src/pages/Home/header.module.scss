@@ -1,3 +1,83 @@
+@import '../../styles/variables.scss';
+
 .whiteshadow {
 	box-shadow: 3px 3px #fff;
+}
+
+.encrypted {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    color: $white;
+
+    .encryptedButton {
+		padding: 4px;
+		width: 42px;
+
+		display: flex;
+		align-items: center;
+
+		background-color: transparent;
+		border: 2px solid $destructive-400;
+		border-radius: 8px;
+
+		transition: border .2s, border-radius .2s, padding .2s, transform .2s;
+
+		&:hover {
+			border-radius: 16px;
+
+			.encryptedButtonDot {
+				border-radius: 16px;
+			}
+		}
+
+		&:active {
+			transform: scale(.9);
+
+			border: 2px solid $success-400;
+
+			.encryptedButtonDot {
+				transform: translateX(18px);
+
+				background-color: $success-400;
+			}
+		}
+
+		.encryptedButtonDot {
+			width: 12px;
+			height: 12px;
+			background-color: $destructive-400;
+			border-radius: 4px;
+
+			transition: transform .2s, background-color .2s, border-radius .2s;
+		}
+    }
+
+	.encryptedButtonActive {
+		@extend .encryptedButton;
+
+		border: 2px solid $success-300;
+
+		.encryptedButtonDot {
+			transform: translateX(18px);
+
+			background-color: $success-300;
+		}
+
+		&:active {
+			transform: scale(.9);
+
+			border: 2px solid $destructive-400;
+
+			.encryptedButtonDot {
+				transform: translateX(0);
+
+				background-color: $destructive-400;
+			}
+		}
+    }
 }

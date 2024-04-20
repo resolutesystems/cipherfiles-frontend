@@ -14,10 +14,18 @@ export function Home() {
     const [files, setFiles] = useState<FileList | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [isEncrypted, setIsEncrypted] = useState(false);
+    const [decryptionKey, setDecryptionKey] = useState<string>("");
 
     const copyDownloadUrl = () => {
-        if (downloadUrl) {
-            navigator.clipboard.writeText(downloadUrl);
+        let urlToCopy = downloadUrl;
+
+        if (isEncrypted && decryptionKey) {
+            urlToCopy += `?key=${decryptionKey}`;
+        }
+
+        if (urlToCopy) {
+            navigator.clipboard.writeText(urlToCopy);
             alert(translatedText('Copied download url to clipboard!'));
         }
     };
@@ -40,7 +48,7 @@ export function Home() {
             }
     
             try {
-                const response = await fetch('http://127.0.0.1:3000/upload?encrypt=false', {
+                const response = await fetch(`http://127.0.0.1:3000/upload?encrypt=${isEncrypted}`, {
                     method: 'POST',
                     body: formData,
                     credentials: "include"
@@ -51,6 +59,10 @@ export function Home() {
                     setState("uploaded");
                     setDownloadUrl(`${WEBSITE_URL}/download/${responseData.id}`)
                     setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
+
+                    if (isEncrypted && responseData.decryption_key) {
+                        setDecryptionKey(responseData.decryption_key);
+                    }
                 } else {
                     console.error('There was an error while uploading files:', response.statusText);
                     setErrorMessage(response.statusText)
@@ -175,7 +187,22 @@ export function Home() {
                         {files && files.length > 0 && state !== "uploading" && (
                             <>
                                 <div class="my-3 mx-28"></div>
+                                <div className={styles.encrypted}>
+                                    {translatedText('Wanna encrypt a file?')}
+                                    <button 
+                                        className={`${styles.encryptedButton} ${isEncrypted ? styles.encryptedButtonActive : ''}`} 
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setIsEncrypted(!isEncrypted);
+                                        }}
+                                    >
+                                        &#x200B;
+                                        <div className={styles.encryptedButtonDot}/>
+                                    </button>
+                                </div>
+                                &#x200B;
                                 <Button text="Upload" onClick={startUpload} />
+
                             </>
                         )}
                     </form>
@@ -186,7 +213,7 @@ export function Home() {
                     <p class="text-white/50 text-md">{translatedText('Download link')}</p>
                     <div class="h-[3px] mx-28"></div>
                     <button onClick={copyDownloadUrl} class="border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all">
-                        {downloadUrl}
+                        {`${downloadUrl}${isEncrypted && decryptionKey ? `?key=${decryptionKey}` : ''}`}
                     </button>
                     <div class="h-[1px] my-2 mx-28"></div>
                     <p class="text-white/50 text-md">{translatedText('Delete link')}</p>
