@@ -3,7 +3,7 @@ import { File } from '../../components/File';
 import { Button } from '../../components/Button';
 import { useEffect } from 'preact/hooks';
 import styles from './header.module.scss'
-import { WEBSITE_URL } from '../../components/helpers';
+import { WEBSITE_URL, API_URL } from '../../components/helpers';
 import { useTranslations } from '../../components/i18n';
 
 export function Home() {
@@ -48,7 +48,7 @@ export function Home() {
             }
     
             try {
-                const response = await fetch(`http://127.0.0.1:3000/upload?encrypt=${isEncrypted}`, {
+                const response = await fetch(`${API_URL}/upload?encrypt=${isEncrypted}`, {
                     method: 'POST',
                     body: formData,
                     credentials: "include"
@@ -57,8 +57,8 @@ export function Home() {
                 if (response.ok) {
                     const responseData = await response.json();
                     setState("uploaded");
-                    setDownloadUrl(`${WEBSITE_URL}/download/${responseData.id}`)
-                    setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
+                    setDownloadUrl(`${API_URL}/download/${responseData.id}`)
+                    setDeleteUrl(`${API_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
 
                     if (isEncrypted && responseData.decryption_key) {
                         setDecryptionKey(responseData.decryption_key);
@@ -69,10 +69,11 @@ export function Home() {
                 }
             } catch (error) {
                 console.error('Error:', error);
-                // Additional error handling
+                setErrorMessage(error)
             }
         } else {
             console.error('No files selected for upload.');
+            setErrorMessage('No files selected for upload.')
         }
     };
     
@@ -142,7 +143,7 @@ export function Home() {
     }, []);
 
     return (
-        <div id={"gay"}>
+        <div>
             {state === "selecting" || state === "uploading" ? (
                 <div>
                     <h1 class="text-center text-3xl font-bold mb-1">{translatedText('Upload your files')}</h1>

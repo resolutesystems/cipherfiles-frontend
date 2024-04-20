@@ -13,7 +13,7 @@ import { DeletePage } from './pages/Delete/index';
 import { NotFound } from './pages/_404';
 
 import Wordmark from './assets/cipher-files-white.png';
-import './style.scss';
+import './styles/style.scss';
 
 export function App() {
 
