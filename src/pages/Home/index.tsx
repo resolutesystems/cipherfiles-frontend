@@ -57,8 +57,8 @@ export function Home() {
                 if (response.ok) {
                     const responseData = await response.json();
                     setState("uploaded");
-                    setDownloadUrl(`${API_URL}/download/${responseData.id}`)
-                    setDeleteUrl(`${API_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
+                    setDownloadUrl(`${WEBSITE_URL}/download/${responseData.id}`)
+                    setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
 
                     if (isEncrypted && responseData.decryption_key) {
                         setDecryptionKey(responseData.decryption_key);
