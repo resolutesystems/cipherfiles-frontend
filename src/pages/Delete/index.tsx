@@ -16,6 +16,7 @@ export function DeletePage() {
     const [deleteKey, setDeleteKey] = useState(defaultDeleteKey);
 
     const [deleting, setDeleting] = useState(false);
+    const [deleteSuccess, setDeleteSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
@@ -50,7 +51,7 @@ export function DeletePage() {
             setDeleting(true);
             
             setTimeout(() => {
-                route('/deleted', true);
+                setDeleteSuccess(true);
             }, 5000);
         } else {
             const data = await response.json();
@@ -64,45 +65,53 @@ export function DeletePage() {
 
     return (
         <div>
-        <h1 className="text-center text-3xl font-bold mb-1">{translatedText('Remove your files')}</h1>
+            {!deleteSuccess ? (
+                <>
+                    <h1 className="text-center text-3xl font-bold mb-1">{translatedText('Remove your files')}</h1>
+                    <form onSubmit={handleConfirm} style={{ cursor: deleting ? 'not-allowed' : 'auto' }}>
+                    <div className="mb-4">
+                        <label htmlFor="uploadId" className="text-white/50 text-md">{translatedText('Upload ID')}</label>
+                        <input
+                            id="uploadId"
+                            type="text"
+                            value={uploadId}
+                            onChange={handleUploadIdChange}
+                            className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
+                            disabled={deleting}
+                        />
+                    </div>
+                    <div className="mb-4">
+                        <label htmlFor="deleteKey" className="text-white/50 text-md">{translatedText('Delete key')}</label>
+                        <input
+                            id="deleteKey"
+                            type="text"
+                            value={deleteKey}
+                            onChange={handleDeleteKeyChange}
+                            className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
+                            disabled={deleting}
+                        />
+                    </div>
+                        <div className="mb-6">
+                            <button type="submit" className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-center break-all ${deleting ? 'cursor-not-allowed' : ''}`} disabled={deleting}>
+                                {deleting ? translatedText('Deleting...') : translatedText('Confirm')}
+                            </button>
+                        </div>
+                    </form>
 
-        <form onSubmit={handleConfirm} style={{ cursor: deleting ? 'not-allowed' : 'auto' }}>
-        <div className="mb-4">
-            <label htmlFor="uploadId" className="text-white/50 text-md">{translatedText('Upload ID')}</label>
-            <input
-                id="uploadId"
-                type="text"
-                value={uploadId}
-                onChange={handleUploadIdChange}
-                className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
-                disabled={deleting}
-            />
-        </div>
-        <div className="mb-4">
-            <label htmlFor="deleteKey" className="text-white/50 text-md">{translatedText('Delete key')}</label>
-            <input
-                id="deleteKey"
-                type="text"
-                value={deleteKey}
-                onChange={handleDeleteKeyChange}
-                className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
-                disabled={deleting}
-            />
-        </div>
-            <div className="mb-6">
-                <button type="submit" className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-center break-all ${deleting ? 'cursor-not-allowed' : ''}`} disabled={deleting}>
-                    {deleting ? translatedText('Deleting...') : translatedText('Confirm')}
-                </button>
-            </div>
-        </form>
 
-
-        {errorMessage && (
-            <>
-                <div class="my-2 mx-28"></div>
-                <p className="text-md text-center text-red-500">{errorMessage}</p>
-            </>
-        )}
+                    {errorMessage && (
+                        <>
+                            <div class="my-2 mx-28"></div>
+                            <p className="text-md text-center text-red-500">{errorMessage}</p>
+                        </>
+                    )}
+                </>
+            ) : (
+                <>
+                    <h1 className="text-center text-3xl font-bold mb-1">{translatedText('Successfully deleted')}</h1>
+                    <p className="text-center text-white/50"><a href="/">{translatedText('Return to the home page')}</a></p>
+                </>
+            )}
         </div>
     );
 }

@@ -50,5 +50,8 @@
     "Upload ID": "ID Pliku",
     "Delete key": "Klucz usuwania",
     "Confirm": "Potwierdź",
-    "Deleting...": "Usuwanie..."
+    "Deleting...": "Usuwanie...",
+
+    "Successfully deleted": "Pomyślnie usunięto",
+    "Return to the home page": "Wróć do strony głównej"
 }

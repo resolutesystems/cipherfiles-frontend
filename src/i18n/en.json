@@ -50,5 +50,8 @@
     "Upload ID": "Upload ID",
     "Delete key": "Delete key",
     "Confirm": "Confirm",
-    "Deleting...": "Deleting..."
+    "Deleting...": "Deleting...",
+
+    "Successfully deleted": "Successfully deleted",
+    "Return to the home page": "Return to the home page"
 }

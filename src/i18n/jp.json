@@ -50,5 +50,8 @@
     "Upload ID": "アップロードID",
     "Delete key": "削除キー",
     "Confirm": "確認する",
-    "Deleting...": "削除中..."
+    "Deleting...": "削除中...",
+
+    "Successfully deleted": "削除が成功しました",
+    "Return to the home page": "ホームページに戻る"
 }
