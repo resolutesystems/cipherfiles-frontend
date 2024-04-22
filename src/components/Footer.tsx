@@ -15,8 +15,8 @@ export function Footer() {
     })
 
     return (
-        <div id={"footer"}>
-            <ul class="flex gap-3">
+        <div id="footer" style={{ width: '690px', maxWidth: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <ul class="flex gap-3" style={{ textAlign: 'center', listStyle: 'none', padding: 0 }}>
                 <a class="text-neutral-500" href="/">{translatedText('home')}</a>
                 <li><a class="text-neutral-500" href="/tos">{translatedText('tos')}</a></li>
                 <li><a class="text-neutral-500" href="/report-abuse">{translatedText('report abuse')}</a></li>
@@ -26,4 +26,5 @@ export function Footer() {
             <p class="text-neutral-500 text-sm">{FOOTER_QUOTE}</p>
         </div>
     );
+    
 }
