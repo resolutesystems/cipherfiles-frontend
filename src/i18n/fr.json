@@ -1,0 +1,65 @@
+{
+    "Cipher Files": "Cipher Files",
+    "Resolute Systems": "Resolute Systems",
+
+    "home": "Accueil",
+    "tos": "Conditions d'utilisation",
+    "report abuse": "Signaler un abus",
+    "faq": "FAQ",
+    "our community": "Notre communauté",
+
+    "Upload your files": "Téléchargez vos fichiers",
+    "Maximum upload file size: <strong>1 GB</strong>": "Taille maximale de téléchargement : <strong>1 GB</strong>",
+    "Click to select files or drag and drop here": "Cliquez pour sélectionner des fichiers ou faites glisser et déposez ici",
+    "Wanna encrypt a file?": "Envie de crypter un fichier ?",
+
+    "Copied download url to clipboard!": "URL de téléchargement copiée dans le presse-papiers !",
+    "Copied delete url to clipboard!": "URL de suppression copiée dans le presse-papiers !",
+
+    "404: Not Found": "404 : Non trouvé",
+
+    "You can only upload one file at a time.": "Vous ne pouvez télécharger qu'un seul fichier à la fois.",
+    "Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.": "La taille totale des fichiers dépasse la limite de 1 GB. Veuillez télécharger des fichiers de taille inférieure à 1 GB.",
+    "File uploaded": "Fichier téléchargé",
+    "Download link": "Lien de téléchargement",
+    "Delete link": "Lien de suppression",
+
+    "Terms of Service": "Conditions d'utilisation",
+    "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "Parce que nous attachons de l'importance à la confidentialité et à la liberté de partage, nous visons à limiter autant que possible les restrictions :",
+    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Ne pas abuser des failles de service, si vous en trouvez, <a href=\"/report-abuse\">veuillez les signaler.</a>",
+    "Uploading illegal or copyrighted content is forbidden.": "Il est interdit de télécharger du contenu illégal ou protégé par des droits d'auteur.",
+
+    "Privacy Policy": "Politique de confidentialité",
+    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "Nous ne collectons pas de données, n'utilisons pas de cookies, n'employons pas d'analyses, ne diffusons pas de publicités et ne conservons pas de journaux. Tous les fichiers téléchargés sur le service peuvent être cryptés à l'aide d'un chiffre indéchiffrable, et vous seul possédez la clé de déchiffrement.",
+
+    "Report Abuse": "Signaler un abus",
+    "If you want to report illegal or copyrighted content, please email us at": "Si vous souhaitez signaler un contenu illégal ou protégé par des droits d'auteur, veuillez nous envoyer un e-mail à",
+    "Remember to include as much information as possible, including the full download URL (with decryption key) and a description of the content.": "N'oubliez pas d'inclure autant d'informations que possible, y compris l'URL de téléchargement complète (avec la clé de déchiffrement) et une description du contenu.",
+
+    "Who has the decryption key?": "Qui possède la clé de déchiffrement ?",
+    "Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.": "La clé de déchiffrement est donnée dans l'URL après le téléchargement de fichiers cryptés. Nous ne stockons pas la clé nulle part sur nos serveurs, donc vous devez en prendre soin car nous ne pouvons pas la récupérer.",
+    "What data do you collect?": "Quelles données collectez-vous ?",
+    "We do not store any data about you nor how you use the service. You can read more at <a class=\"text-accent link\" href=\"/terms-of-service\">conditions d'utilisation</a>.": "Nous ne stockons aucune donnée vous concernant ni sur la manière dont vous utilisez le service. Vous pouvez en savoir plus sur les <a class=\"text-accent link\" href=\"/terms-of-service\">conditions d'utilisation</a>.",
+
+    "Someone uploaded illegal content": "Quelqu'un a téléchargé du contenu illégal",
+    "If someone sent you a download link with illegal content, you are obligated to report it through <a class=\"text-accent link\" href=\"/report-abuse\">le formulaire de signalement d'abus</a> !": "Si quelqu'un vous a envoyé un lien de téléchargement avec un contenu illégal, vous êtes obligé de le signaler via <a class=\"text-accent link\" href=\"/report-abuse\">le formulaire de signalement d'abus</a> !",
+
+    "Why it takes so long to upload/download encrypted files?": "Pourquoi cela prend-il autant de temps pour télécharger/télécharger des fichiers cryptés ?",
+    "The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.": "La principale raison en est le chiffrement et le déchiffrement, qui peuvent prendre beaucoup de temps avec de gros fichiers. Ainsi que des ressources serveur limitées.",
+
+    "An error occurred while deleting the file.": "Une erreur s'est produite lors de la suppression du fichier.",
+    "Remove your files": "Supprimez vos fichiers",
+    "Upload ID": "Identifiant de téléchargement",
+    "Delete key": "Clé de suppression",
+    "Confirm": "Confirmer",
+    "Download": "Télécharger",
+    "Deleting...": "Suppression en cours...",
+
+    "Downloads": "Téléchargements",
+    "Download your files": "Téléchargez vos fichiers",
+
+    "Decryption Key": "Clé de déchiffrement",
+
+    "Successfully deleted": "Suppression réussie",
+    "Return to the home page": "Retour à la page d'accueil"
+}

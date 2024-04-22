@@ -2,6 +2,7 @@ import { route } from 'preact-router';
 import { useState, useEffect } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
 import { useTranslations } from '../../components/i18n';
+import { API_URL } from '../../components/helpers';
 
 export function DeletePage() {
     const { translatedText } = useTranslations();
@@ -43,7 +44,7 @@ export function DeletePage() {
     const handleConfirm = async (e: Event) => {
         e.preventDefault();
         try {
-        const response = await fetch(`http://127.0.0.1:3000/delete/${uploadId}?key=${deleteKey}`, {
+        const response = await fetch(`${API_URL}/delete/${uploadId}?key=${deleteKey}`, {
             method: 'DELETE'
         });
 
@@ -77,6 +78,7 @@ export function DeletePage() {
                             value={uploadId}
                             onChange={handleUploadIdChange}
                             className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
+                            required
                             disabled={deleting}
                         />
                     </div>
@@ -88,6 +90,7 @@ export function DeletePage() {
                             value={deleteKey}
                             onChange={handleDeleteKeyChange}
                             className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
+                            required
                             disabled={deleting}
                         />
                     </div>

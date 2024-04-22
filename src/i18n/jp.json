@@ -50,7 +50,13 @@
     "Upload ID": "アップロードID",
     "Delete key": "削除キー",
     "Confirm": "確認する",
+    "Download": "ダウンロード",
     "Deleting...": "削除中...",
+
+    "Downloads": "ダウンロード数",
+    "Download your files": "ファイルをダウンロードしてください",
+
+    "Decryption Key": "復号キー",
 
     "Successfully deleted": "削除が成功しました",
     "Return to the home page": "ホームページに戻る"

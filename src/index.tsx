@@ -10,6 +10,7 @@ import { Tos } from './pages/Tos/index';
 import { ReportAbuse } from './pages/ReportAbuse/index';
 import { FAQ } from './pages/FAQ';
 import { DeletePage } from './pages/Delete/index';
+import { DownloadPage } from './pages/Download/index';
 import { NotFound } from './pages/_404';
 
 import Wordmark from './assets/cipher-files-white.png';
@@ -47,7 +48,8 @@ export function App() {
 								<AsyncRoute path="/tos" component={Tos} />
 								<AsyncRoute path="/report-abuse" component={ReportAbuse} />
 								<AsyncRoute path="/faq" component={FAQ} />
-								<AsyncRoute path="/delete/:upload_id" component={DeletePage}/>
+								<AsyncRoute path="/delete/:upload_id" component={DeletePage} />
+								<AsyncRoute path="/download/:upload_id" component={DownloadPage} />
 								<NotFound default />
 							</Router>
 						</main>

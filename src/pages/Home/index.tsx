@@ -58,10 +58,10 @@ export function Home() {
                     const responseData = await response.json();
                     setState("uploaded");
                     setDownloadUrl(`${WEBSITE_URL}/download/${responseData.id}`)
-                    setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.delete_key}`)
+                    setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.deleteKey}`)
 
-                    if (isEncrypted && responseData.decryption_key) {
-                        setDecryptionKey(responseData.decryption_key);
+                    if (isEncrypted && responseData.decryptionKey) {
+                        setDecryptionKey(responseData.decryptionKey);
                     }
                 } else {
                     console.error('There was an error while uploading files:', response.statusText);
@@ -176,7 +176,7 @@ export function Home() {
                                     }
                                 }} class="hidden" type="file" name="files" required />
 
-                                <p>{translatedText('Click to select files or drag and drop here')}</p>
+                                <p class="px-3 text-center">{translatedText('Click to select files or drag and drop here')}</p>
                             </label>
                         )}
                         {errorMessage && (
@@ -202,7 +202,7 @@ export function Home() {
                                     </button>
                                 </div>
                                 &#x200B;
-                                <Button text="Upload" onClick={startUpload} />
+                                <Button text={translatedText('Upload')} onClick={startUpload} />
 
                             </>
                         )}

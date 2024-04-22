@@ -50,7 +50,13 @@
     "Upload ID": "Upload ID",
     "Delete key": "Delete key",
     "Confirm": "Confirm",
+    "Download": "Download",
     "Deleting...": "Deleting...",
+
+    "Downloads": "Downloads",
+    "Download your files": "Download your files",
+
+    "Decryption Key": "Decryption Key",
 
     "Successfully deleted": "Successfully deleted",
     "Return to the home page": "Return to the home page"

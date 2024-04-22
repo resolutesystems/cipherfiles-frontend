@@ -50,7 +50,13 @@
     "Upload ID": "ID Pliku",
     "Delete key": "Klucz usuwania",
     "Confirm": "Potwierdź",
+    "Download": "Pobierz",
     "Deleting...": "Usuwanie...",
+
+    "Downloads": "Liczba pobrań",
+    "Download your files": "Pobierz swoje pliki",
+
+    "Decryption Key": "Klucz deszyfrujący",
 
     "Successfully deleted": "Pomyślnie usunięto",
     "Return to the home page": "Wróć do strony głównej"
