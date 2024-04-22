@@ -1,0 +1,63 @@
+{
+    "Cipher Files": "Cipher Files",
+    "Resolute Systems": "Resolute Systems",
+
+    "home": "heim",
+    "tos": "tos",
+    "report abuse": "Missbrauch melden",
+    "faq": "FAQ",
+    "our community": "unsere Gemeinschaft",
+    
+    "Upload your files": "Laden Sie Ihre Dateien hoch",
+    "Maximum upload file size: <strong>1 GB</strong>": "Maximale Upload-Dateigröße: <strong>1 GB</strong>",
+    "Click to select files or drag and drop here": "Klicken Sie, um Dateien auszuwählen, oder ziehen Sie sie per Drag & Drop hierher",
+    "Wanna encrypt a file?": "Möchten Sie eine Datei verschlüsseln?",
+    
+    "Copied download url to clipboard!": "Download-URL in die Zwischenablage kopiert!",
+    "Copied delete url to clipboard!": "Lösch-URL in die Zwischenablage kopiert!",
+    
+    "404: Not Found": "404: Nicht gefunden",
+    
+    "You can only upload one file at a time.": "Sie können jeweils nur eine Datei hochladen.",
+    "Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.": "Die Gesamtgröße der Dateien überschreitet die 1-GB-Grenze. ",
+    "File uploaded": "Datei hochgeladen",
+    "Download link": "Download-Link",
+    "Delete link": "Link löschen",
+    
+    "Terms of Service": "Nutzungsbedingungen",
+    "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "Da wir uns der Privatsphäre bewusst sind und Wert darauf legen, die Freiheit zu teilen, streben wir nach möglichst wenigen Einschränkungen:",
+    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Missbrauchen Sie keine Service-Exploits, falls Sie welche finden <a href=\"/report-abuse\">Bitte melden Sie es.</a>",
+    "Uploading illegal or copyrighted content is forbidden.": "Das Hochladen illegaler oder urheberrechtlich geschützter Inhalte ist verboten.",
+    
+    "Privacy Policy": "Datenschutzrichtlinie",
+    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "Wir sammeln keine Daten, verwenden keine Cookies, nutzen keine Analysen, schalten keine Werbung und führen keine Protokolle. ",
+    
+    "Report Abuse": "Missbrauch melden",
+    "If you want to report illegal or copyrighted content, please email us at": "Wenn Sie illegale oder urheberrechtlich geschützte Inhalte melden möchten, senden Sie uns bitte eine E-Mail an",
+    "Remember to include as much information as possible, including the full download URL (with decryption key) and a description of the content.": "Denken Sie daran, so viele Informationen wie möglich anzugeben, einschließlich der vollständigen Download-URL (mit Entschlüsselungsschlüssel) und einer Beschreibung des Inhalts.",
+    
+    "Who has the decryption key?": "Wer hat den Entschlüsselungsschlüssel?",
+    "Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.": "Der Entschlüsselungsschlüssel wird in der URL nach dem Hochladen verschlüsselter Dateien angegeben. ",
+    "What data do you collect?": "Welche Daten erheben Sie?",
+    "We do not store any data about you nor how you use the service. You can read more at <a class=\"text-accent link\" href=\"/terms-of-service\">terms of service</a>.": "Wir speichern weder Daten über Sie noch darüber, wie Sie den Dienst nutzen.  <a class=\"text-accent link\" href=\"/terms-of-service\">Nutzungsbedingungen</a>.",
+    "Someone uploaded illegal content": "Jemand hat illegale Inhalte hochgeladen",
+    "If someone sent you a download link with illegal content, you are obligated to report it through <a class=\"text-accent link\" href=\"/report-abuse\">report abuse</a> form!": "Wenn Ihnen jemand einen Download-Link mit rechtswidrigem Inhalt gesendet hat, sind Sie verpflichtet, dies zu melden <a class=\"text-accent link\" href=\"/report-abuse\">Missbrauch melden</a> bilden!",
+    "Why it takes so long to upload/download encrypted files?": "Warum dauert das Hoch-/Herunterladen verschlüsselter Dateien so lange?",
+    "The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.": "Der Hauptgrund dafür ist die Ver- und Entschlüsselung, die bei großen Dateien lange dauern kann. ",
+    
+    "An error occurred while deleting the file.": "Beim Löschen der Datei ist ein Fehler aufgetreten.",
+    "Remove your files": "Entfernen Sie Ihre Dateien",
+    "Upload ID": "ID hochladen",
+    "Delete key": "Schlüssel löschen",
+    "Confirm": "Bestätigen",
+    "Download": "Herunterladen",
+    "Deleting...": "Löschen...",
+    
+    "Downloads": "Downloads",
+    "Download your files": "Laden Sie Ihre Dateien herunter",
+    
+    "Decryption Key": "Entschlüsselungsschlüssel",
+    
+    "Successfully deleted": "Erfolgreich gelöscht",
+    "Return to the home page": "Zurück zur Startseite"
+}

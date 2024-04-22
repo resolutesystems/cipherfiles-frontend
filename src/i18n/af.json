@@ -1,0 +1,63 @@
+{
+    "Cipher Files": "Cipher Files",
+    "Resolute Systems": "Resolute Systems",
+
+    "home": "tuis",
+    "tos": "tos",
+    "report abuse": "rapporteer misbruik",
+    "faq": "veelgestelde vrae",
+    "our community": "ons gemeenskap",
+    
+    "Upload your files": "Laai jou lêers op",
+    "Maximum upload file size: <strong>1 GB</strong>": "Maksimum op te laai lêer grootte: <strong>1 GB</strong>",
+    "Click to select files or drag and drop here": "Klik om lêers te kies of sleep en laat hier val",
+    "Wanna encrypt a file?": "Wil jy 'n lêer versleutel?",
+    
+    "Copied download url to clipboard!": "Gekopieerde aflaai url na kladbord!",
+    "Copied delete url to clipboard!": "Gekopieerde verwyder url na kladbord!",
+    
+    "404: Not Found": "404: Nie gevind",
+    
+    "You can only upload one file at a time.": "Jy kan slegs een lêer op 'n slag laai.",
+    "Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.": "Totale lêergrootte oorskry die 1 GB limiet. Laai asseblief lêers kleiner as 1 GB op.",
+    "File uploaded": "Lêer opgelaai",
+    "Download link": "Aflaai skakel",
+    "Delete link": "Verwyder skakel",
+    
+    "Terms of Service": "Diensvoorwaardes",
+    "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "Omdat ons privaatheidbewus is en die vryheid van deling waardeer, streef ons na so min beperkings moontlik:",
+    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Mislewer nie diens uitbuiting nie, as jy enige vind <a href=\"/report-abuse\">meld dit asseblief.</a>",
+    "Uploading illegal or copyrighted content is forbidden.": "Die oplaai van onwettige of kopiereg-inhoud is verbode.",
+    
+    "Privacy Policy": "Privaatheidsbeleid",
+    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "Ons versamel nie data nie, gebruik nie koekies nie, gebruik nie analitiese gereedskap nie, wys nie advertensies nie, of hou nie logboeke aan nie. Alle lêers wat na die diens opgelaai word, kan met 'n onbreekbare siklus versleutel word, en slegs jy besit die dekripsiesleutel.",
+    
+    "Report Abuse": "Rapporteer misbruik",
+    "If you want to report illegal or copyrighted content, please email us at": "As jy onwettige of kopiereg-inhoud wil rapporteer, e-pos ons asseblief by",
+    "Remember to include as much information as possible, including the full download URL (with decryption key) and a description of the content.": "Onthou om soveel moontlik inligting in te sluit, insluitend die volledige aflaaikoppel (met dekripsiesleutel) en 'n beskrywing van die inhoud.",
+    
+    "Who has the decryption key?": "Wie het die dekripsiesleutel?",
+    "Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.": "Die dekripsiesleutel word in die URL gegee nadat versleutelde lêers opgelaai is. Ons stoor die sleutel nêrens op ons bedieners nie, dus moet jy daarvoor sorg, want ons kan dit nie herstel nie.",
+    "What data do you collect?": "Watter data versamel ons?",
+    "We do not store any data about you nor how you use the service. You can read more at <a class=\"text-accent link\" href=\"/terms-of-service\">terms of service</a>.": "Ons stoor geen data oor jou of hoe jy die diens gebruik nie. Jy kan meer lees by <a class=\"text-accent link\" href=\"/terms-of-service\">diensvoorwaardes</a>.",
+    "Someone uploaded illegal content": "Iemand het onwettige inhoud opgelaai",
+    "If someone sent you a download link with illegal content, you are obligated to report it through <a class=\"text-accent link\" href=\"/report-abuse\">report abuse</a> form!": "As iemand jou 'n aflaailink met onwettige inhoud gestuur het, is jy verplig om dit deur <a class=\"text-accent link\" href=\"/report-abuse\">rapporteer misbruik</a> vorm!",
+    "Why it takes so long to upload/download encrypted files?": "Hoekom neem dit so lank om versleutelde lêers op te laai/af te laai?",
+    "The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.": "Die hoofrede hiervoor is versleuteling en dekripsie, wat lank kan duur met groot lêers. Asook beperkte bedienerhulpbronne.",
+    
+    "An error occurred while deleting the file.": "Daar was 'n fout terwyl die lêer verwyder is.",
+    "Remove your files": "Verwyder jou lêers",
+    "Upload ID": "Oplaai ID",
+    "Delete key": "Verwyder sleutel",
+    "Confirm": "Bevestig",
+    "Download": "Aflaai",
+    "Deleting...": "Verwyder...",
+    
+    "Downloads": "Aflaaie",
+    "Download your files": "Laai jou lêers af",
+    
+    "Decryption Key": "Dekripsiesleutel",
+    
+    "Successfully deleted": "Suksesvol verwyder",
+    "Return to the home page": "Terug na die tuisblad"
+}
