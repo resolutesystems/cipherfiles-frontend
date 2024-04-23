@@ -68,34 +68,34 @@ export function DeletePage() {
         <div>
             {!deleteSuccess ? (
                 <>
-                    <h1 className="text-center text-3xl font-bold mb-1">{translatedText('Remove your files')}</h1>
+                    <h1 class="text-center text-3xl font-bold mb-1">{translatedText('Remove your files')}</h1>
                     <form onSubmit={handleConfirm} style={{ cursor: deleting ? 'not-allowed' : 'auto' }}>
-                    <div className="mb-4">
-                        <label htmlFor="uploadId" className="text-white/50 text-md">{translatedText('Upload ID')}</label>
+                    <div class="mb-4">
+                        <label htmlFor="uploadId" class="text-white/50 text-md">{translatedText('Upload ID')}</label>
                         <input
                             id="uploadId"
                             type="text"
                             value={uploadId}
                             onChange={handleUploadIdChange}
-                            className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
+                            class={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
                             required
                             disabled={deleting}
                         />
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="deleteKey" className="text-white/50 text-md">{translatedText('Delete key')}</label>
+                    <div class="mb-4">
+                        <label htmlFor="deleteKey" class="text-white/50 text-md">{translatedText('Delete key')}</label>
                         <input
                             id="deleteKey"
                             type="text"
                             value={deleteKey}
                             onChange={handleDeleteKeyChange}
-                            className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
+                            class={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all bg-transparent text-white ${deleting ? 'cursor-not-allowed' : ''}`}
                             required
                             disabled={deleting}
                         />
                     </div>
-                        <div className="mb-6">
-                            <button type="submit" className={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-center break-all ${deleting ? 'cursor-not-allowed' : ''}`} disabled={deleting}>
+                        <div class="mb-6">
+                            <button type="submit" class={`border border-white whiteshadow px-3 py-3 rounded-md w-full text-center break-all ${deleting ? 'cursor-not-allowed' : ''}`} disabled={deleting}>
                                 {deleting ? translatedText('Deleting...') : translatedText('Confirm')}
                             </button>
                         </div>
@@ -105,14 +105,14 @@ export function DeletePage() {
                     {errorMessage && (
                         <>
                             <div class="my-2 mx-28"></div>
-                            <p className="text-md text-center text-red-500">{errorMessage}</p>
+                            <p class="text-md text-center text-red-500">{errorMessage}</p>
                         </>
                     )}
                 </>
             ) : (
                 <>
-                    <h1 className="text-center text-3xl font-bold mb-1">{translatedText('Successfully deleted')}</h1>
-                    <p className="text-center text-white/50"><a href="/">{translatedText('Return to the home page')}</a></p>
+                    <h1 class="text-center text-3xl font-bold mb-1">{translatedText('Successfully deleted')}</h1>
+                    <p class="text-center text-white/50"><a href="/">{translatedText('Return to the home page')}</a></p>
                 </>
             )}
         </div>

@@ -189,7 +189,7 @@ export function Home() {
                                     
                                     const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
                                     
-                                    if (totalSize > 1024 * 1024 * 1024) {
+                                    if (totalSize >= 1000 * 1000 * 1000) {
                                         setErrorMessage(translatedText('Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.'));
                                     } else {
                                         setFiles(files);
@@ -204,18 +204,18 @@ export function Home() {
                             <>
                                 {state !== "uploading" && (
                                     <>
-                                        <div className="my-3 mx-28"></div>
-                                        <div className={styles.encrypted}>
+                                        <div class="my-3 mx-28"></div>
+                                        <div class={styles.encrypted}>
                                             {translatedText('Wanna encrypt a file?')}
                                             <button 
-                                                className={`${styles.encryptedButton} ${isEncrypted ? styles.encryptedButtonActive : ''}`} 
+                                                class={`${styles.encryptedButton} ${isEncrypted ? styles.encryptedButtonActive : ''}`} 
                                                 onClick={(e) => {
                                                     e.preventDefault();
                                                     setIsEncrypted(!isEncrypted);
                                                 }}
                                                 >
                                                 &#x200B;
-                                                <div className={styles.encryptedButtonDot}/>
+                                                <div class={styles.encryptedButtonDot}/>
                                             </button>
                                         </div>
                                     </>
@@ -235,8 +235,15 @@ export function Home() {
                         )}
                         {errorMessage && (
                             <>
-                                {/* <div class="my-2 mx-28"></div> */}
-                                <p className="text-md text-center text-red-500">{errorMessage}</p>
+                                {state === "uploading" && (
+                                    <>
+                                    <div class="my-2 mx-28"></div>
+                                    <p class="text-md text-center text-red-500">{errorMessage}</p>
+                                    </>
+                                )}
+                                {state !== "uploading" && (
+                                    <p class="text-md text-center text-red-500">{errorMessage}</p>
+                                )}
                             </>
                         )}
                     </form>

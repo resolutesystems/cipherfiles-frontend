@@ -9,8 +9,11 @@ export function DownloadPage() {
     const { params } = useRoute();
     const defaultUploadId = params.upload_id || '';
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const defaultDeleteKey = queryParams.get('key') || '';
+
     const [uploadId, setUploadId] = useState(defaultUploadId);
-    const [decryptionKey, setDecryptionKey] = useState('');
+    const [decryptionKey, setDecryptionKey] = useState(defaultDeleteKey);
     const [fileInfo, setFileInfo] = useState(null);
     const [showDecryptionKeyInput, setShowDecryptionKeyInput] = useState(false);
     const [showForm, setShowForm] = useState(true);
@@ -20,7 +23,7 @@ export function DownloadPage() {
         setUploadId(defaultUploadId);
         setFileInfo(null);
         setShowForm(true);
-    }, [defaultUploadId]);
+    }, [defaultUploadId, defaultDeleteKey]);
 
     const handleUploadIdChange = (e) => {
         setUploadId(e.target.value);
@@ -44,7 +47,7 @@ export function DownloadPage() {
             const response = await fetch(url);
             if (!response.ok) {
                 const data = await response.json();
-                if (data === "This file is encrypted! You need to provide decryption key.") {
+                if (data.errorCode === "missing-key") {
                     setShowDecryptionKeyInput(true);
                     setErrorMessage('');
                 } else {
