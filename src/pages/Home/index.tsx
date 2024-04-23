@@ -16,6 +16,7 @@ export function Home() {
     const [errorMessage, setErrorMessage] = useState("");
     const [isEncrypted, setIsEncrypted] = useState(false);
     const [decryptionKey, setDecryptionKey] = useState<string>("");
+    const [uploadProgress, setUploadProgress] = useState<number>(0);
 
     const copyDownloadUrl = () => {
         let urlToCopy = downloadUrl;
@@ -40,44 +41,60 @@ export function Home() {
     const startUpload = async (event: Event) => {
         event.preventDefault();
         const formData = new FormData();
-        setState("uploading")
-    
+        setState('uploading');
+
         if (files) {
             for (let i = 0; i < files.length; i++) {
                 formData.append('file', files[i]);
             }
-    
-            try {
-                const response = await fetch(`${API_URL}/upload?encrypt=${isEncrypted}`, {
-                    method: 'POST',
-                    body: formData,
-                    credentials: "include"
-                });
-    
-                if (response.ok) {
-                    const responseData = await response.json();
-                    setState("uploaded");
-                    setDownloadUrl(`${WEBSITE_URL}/download/${responseData.id}`)
-                    setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.deleteKey}`)
 
-                    if (isEncrypted && responseData.decryptionKey) {
-                        setDecryptionKey(responseData.decryptionKey);
+            try {
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', `${API_URL}/upload?encrypt=${isEncrypted}`, true);
+                xhr.withCredentials = true;
+
+                xhr.upload.addEventListener('progress', (event) => {
+                    if (event.lengthComputable) {
+                        const percentComplete = (event.loaded / event.total) * 100;
+                        updateProgressBar(percentComplete);
                     }
-                } else {
-                    console.error('There was an error while uploading files:', response.statusText);
-                    setErrorMessage(response.statusText)
-                }
+                });
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            const responseData = JSON.parse(xhr.responseText);
+                            setState('uploaded');
+                            setDownloadUrl(`${WEBSITE_URL}/download/${responseData.id}`);
+                            setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.deleteKey}`);
+                            if (isEncrypted && responseData.decryptionKey) {
+                                setDecryptionKey(responseData.decryptionKey);
+                            }
+                        } else {
+                            // console.error('There was an error while uploading files');
+                            setErrorMessage("There was an error while uploading files");
+                        }
+                    }
+                };
+
+                xhr.send(formData);
             } catch (error) {
                 console.error('Error:', error);
-                setErrorMessage(error)
+                setErrorMessage(error);
             }
         } else {
             console.error('No files selected for upload.');
-            setErrorMessage('No files selected for upload.')
+            setErrorMessage('No files selected for upload.');
         }
     };
     
-    
+    const updateProgressBar = (percentComplete: number) => {
+        setUploadProgress(percentComplete);
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) {
+            progressBar.style.width = percentComplete + '%';
+        }
+    };
 
     const handleDragOver = (event: DragEvent) => {
         event.preventDefault();
@@ -146,9 +163,13 @@ export function Home() {
         <div>
             {state === "selecting" || state === "uploading" ? (
                 <div>
-                    <h1 class="text-center text-3xl font-bold mb-1">{translatedText('Upload your files')}</h1>
+                    <h1 class="text-center text-3xl font-bold mb-1">
+                        {state === "uploading" ? translatedText('Uploading your files') : translatedText('Upload your files')}
+                    </h1>
                     <p class="text-center text-neutral-300 mb-5 font-light"
-                    dangerouslySetInnerHTML={{ __html: translatedText('Maximum upload file size: <strong>1 GB</strong>') }}
+                        dangerouslySetInnerHTML={{ __html: state === "uploading" ?
+                        `${uploadProgress < 100 ? Math.floor(uploadProgress) : uploadProgress.toFixed(2)}% ${translatedText('complete')}` :
+                        translatedText('Maximum upload file size: <strong>1 GB</strong>') }}
                     />
                     <form class="flex flex-col" method="post" enctype="multipart/form-data">
                         {files && files.length > 0 && (
@@ -179,31 +200,43 @@ export function Home() {
                                 <p class="px-3 text-center">{translatedText('Click to select files or drag and drop here')}</p>
                             </label>
                         )}
-                        {errorMessage && (
+                        {files && files.length > 0 && (
                             <>
-                                <div class="my-2 mx-28"></div>
-                                <p className="text-md text-center text-red-500">{errorMessage}</p>
+                                {state !== "uploading" && (
+                                    <>
+                                        <div className="my-3 mx-28"></div>
+                                        <div className={styles.encrypted}>
+                                            {translatedText('Wanna encrypt a file?')}
+                                            <button 
+                                                className={`${styles.encryptedButton} ${isEncrypted ? styles.encryptedButtonActive : ''}`} 
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setIsEncrypted(!isEncrypted);
+                                                }}
+                                                >
+                                                &#x200B;
+                                                <div className={styles.encryptedButtonDot}/>
+                                            </button>
+                                        </div>
+                                    </>
+                                )}
+                                {state === "uploading" && (
+                                    <>
+                                    <div class="border border-white whiteshadow px-3 py-3 rounded-md w-full relative overflow-hidden">
+                                        <div id="progress-bar" class="absolute top-0 left-0 h-full bg-white"></div>
+                                    </div>
+                                    </>
+                                )}
+                                &#x200B;
+                                {state !== "uploading" && (
+                                    <Button text={translatedText('Upload')} onClick={startUpload} />
+                                )}
                             </>
                         )}
-                        {files && files.length > 0 && state !== "uploading" && (
+                        {errorMessage && (
                             <>
-                                <div class="my-3 mx-28"></div>
-                                <div className={styles.encrypted}>
-                                    {translatedText('Wanna encrypt a file?')}
-                                    <button 
-                                        className={`${styles.encryptedButton} ${isEncrypted ? styles.encryptedButtonActive : ''}`} 
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            setIsEncrypted(!isEncrypted);
-                                        }}
-                                    >
-                                        &#x200B;
-                                        <div className={styles.encryptedButtonDot}/>
-                                    </button>
-                                </div>
-                                &#x200B;
-                                <Button text={translatedText('Upload')} onClick={startUpload} />
-
+                                {/* <div class="my-2 mx-28"></div> */}
+                                <p className="text-md text-center text-red-500">{errorMessage}</p>
                             </>
                         )}
                     </form>
