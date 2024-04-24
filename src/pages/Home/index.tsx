@@ -188,8 +188,7 @@ export function Home() {
                                     const files = e.currentTarget.files;
                                     
                                     const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
-                                    
-                                    if (totalSize >= 1000 * 1000 * 1000) {
+                                    if (totalSize > 1024 * 1024 * 1024) {
                                         setErrorMessage(translatedText('Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.'));
                                     } else {
                                         setFiles(files);

@@ -45,16 +45,15 @@ export function DownloadPage() {
                 url += `?key=${decryptionKey}`;
             }
             const response = await fetch(url);
+            const data = await response.json();
             if (!response.ok) {
-                const data = await response.json();
                 if (data.errorCode === "missing-key") {
                     setShowDecryptionKeyInput(true);
                     setErrorMessage('');
                 } else {
-                    throw new Error(data);
+                    throw new Error(data.error);
                 }
             } else {
-                const data = await response.json();
                 setFileInfo(data);
                 setShowDecryptionKeyInput(false);
                 setShowForm(false);

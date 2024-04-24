@@ -1,6 +1,6 @@
 export const API_URL = "http://127.0.0.1:3000";
 export const WEBSITE_URL = "http://localhost:5173";
-export const COMMUNITY_URL = "https://t.me/cipherfiles";
+export const COMMUNITY_URL = "https://discord.gg/DmRhftYcvN";
 export const FOOTER_QUOTE = `© ${new Date().getFullYear()} Resolute Systems. All rights reserved.`;
 export const ABUSE_EMAIL = "abuse@cipherfiles.com";
 
