@@ -32,8 +32,28 @@ export function Footer() {
         window.location.href = '/';
     };
 
+    const getEmoji = (name: string) => {
+        if (window.innerWidth <= 600) {
+            switch (name) {
+                case 'home':
+                    return '🏠';
+                case 'tos':
+                    return '📄';
+                case 'report abuse':
+                    return '⚠️';
+                case 'faq':
+                    return '❓';
+                case 'our community':
+                    return '👥';
+                default:
+                    return '';
+            }
+        }
+        return name;
+    };
+
     return (
-        <div id="footer" style={{ width: '690px', maxWidth: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div id="footer" class="footer">
             <div style={{ maxWidth: 'none', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                 <img src={us} alt="English" title="English" style={{ width: '25px', cursor: 'pointer', filter: language === 'en' ? 'none' : 'grayscale(100%)'}} onClick={() => handleLanguageChange('en')} />
                 <img src={pl} alt="Polski" title="Polski" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'pl' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('pl')} />
@@ -43,11 +63,11 @@ export function Footer() {
                 <img src={de} alt="Deutsch" title="Deutsch" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'de' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('de')} />
             </div>
             <ul class="flex gap-3" style={{ textAlign: 'center', listStyle: 'none', padding: 0 }}>
-                <a class="text-neutral-500" href="/">{translatedText('home')}</a>
-                <li><a class="text-neutral-500" href="/tos">{translatedText('tos')}</a></li>
-                <li><a class="text-neutral-500" href="/report-abuse">{translatedText('report abuse')}</a></li>
-                <li><a class="text-neutral-500" href="/faq">{translatedText('faq')}</a></li>
-                <li><a class="text-neutral-500" href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer">{translatedText('our community')}</a></li>
+                <a class="text-neutral-500" href="/">{getEmoji(translatedText('home'))}</a>
+                <li><a class="text-neutral-500" href="/tos">{getEmoji(translatedText('tos'))}</a></li>
+                <li><a class="text-neutral-500" href="/report-abuse">{getEmoji(translatedText('report abuse'))}</a></li>
+                <li><a class="text-neutral-500" href="/faq">{getEmoji(translatedText('faq'))}</a></li>
+                <li><a class="text-neutral-500" href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer">{getEmoji(translatedText('our community'))}</a></li>
             </ul>
             <p class="text-neutral-500 text-sm">{FOOTER_QUOTE}</p>
         </div>

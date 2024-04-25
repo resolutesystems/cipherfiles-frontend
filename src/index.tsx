@@ -38,7 +38,7 @@ export function App() {
 	return (
 		<LocationProvider>
 			<div class="bg-[#0A0A0A] min-h-screen flex items-center justify-center text-white py-5">
-				<div class="flex flex-col items-center gap-5 w-[490px] text-lg">
+				<div class="gyat flex flex-col items-center gap-5 w-[490px] text-lg">
 					<a href="/"><img id={"home"} src={Wordmark}/></a>
 					<br/>
 					<div id={"home"} class="flex flex-col border border-white border-[1px] p-8 rounded-lg w-full">
