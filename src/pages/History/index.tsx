@@ -164,7 +164,7 @@ export function History() {
                     <div class="text-right">
                         {file.expiresAt && !file.expiresAt.startsWith('Expires after') ? (
                             <p class="text-white/50 text-md">
-                                Expires after {calculateTimeRemaining(file.expiresAt)}
+                                {translatedText('Expires after')} {calculateTimeRemaining(file.expiresAt)}
                             </p>
                         ) : null}
                         {file.expiresAt && file.expiresAt.startsWith('Expires after') && (
