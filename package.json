@@ -1,5 +1,5 @@
 {
-	"name": "cipher-files",
+	"name": "cipherfiles-frontend",
 	"private": true,
 	"description": "Encrypted and anonymous file sharing service",
 	"version": "2.0",
@@ -17,7 +17,7 @@
 		"files",
 		"cipher files"
 	],
-	"author": "stan",
+	"author": "Stanisław Kuriata",
 	"license": "AGPL-3.0",
 	"scripts": {
 		"dev": "vite dev --host",

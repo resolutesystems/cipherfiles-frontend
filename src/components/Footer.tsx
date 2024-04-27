@@ -62,7 +62,7 @@ export function Footer() {
                 <img src={jp} alt="日本語" title="日本語" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'jp' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('jp')} />
                 <img src={de} alt="Deutsch" title="Deutsch" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'de' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('de')} />
             </div>
-            <ul class="flex gap-3" style={{ textAlign: 'center', listStyle: 'none', padding: 0 }}>
+            <ul class="flex flex-wrap justify-center gap-x-3" style={{ textAlign: 'center', listStyle: 'none', padding: 0 }}>
                 <a class="text-neutral-500" href="/">{getEmoji(translatedText('home'))}</a>
                 <li><a class="text-neutral-500" href="/tos">{getEmoji(translatedText('tos'))}</a></li>
                 <li><a class="text-neutral-500" href="/report-abuse">{getEmoji(translatedText('report abuse'))}</a></li>

@@ -44,8 +44,10 @@ export function DownloadPage() {
             if (showDecryptionKeyInput && decryptionKey) {
                 url += `?key=${decryptionKey}`;
             }
+
             const response = await fetch(url);
             const data = await response.json();
+
             if (!response.ok) {
                 if (data.errorCode === "missing-key") {
                     setShowDecryptionKeyInput(true);
@@ -61,7 +63,7 @@ export function DownloadPage() {
             }
         } catch (error) {
             setErrorMessage(error.message);
-            console.error('Error fetching file info:', error);
+            console.error('Error fetching file info:', error.message);
         }
     };
 
@@ -70,6 +72,7 @@ export function DownloadPage() {
             if (!fileInfo) {
                 throw new Error("Please submit the form to fetch file info before providing the decryption key.");
             }
+
             let url = `${API_URL}/download/${uploadId}`;
             if (decryptionKey) {
                 url += `?key=${decryptionKey}`;
@@ -77,7 +80,7 @@ export function DownloadPage() {
             window.location.href = url;
         } catch (error) {
             setErrorMessage(error.message);
-            console.error('Error downloading file:', error);
+            console.error('Error downloading file:', error.message);
         }
     };
 

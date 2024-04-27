@@ -11,6 +11,7 @@ import { ReportAbuse } from './pages/ReportAbuse/index';
 import { FAQ } from './pages/FAQ';
 import { DeletePage } from './pages/Delete/index';
 import { DownloadPage } from './pages/Download/index';
+import { History } from './pages/History/index';
 import { NotFound } from './pages/_404';
 
 import Wordmark from './assets/cipher-files-white.png';
@@ -50,6 +51,7 @@ export function App() {
 								<AsyncRoute path="/faq" component={FAQ} />
 								<AsyncRoute path="/delete/:upload_id" component={DeletePage} />
 								<AsyncRoute path="/download/:upload_id" component={DownloadPage} />
+								<AsyncRoute path="/history" component={History} />
 								<NotFound default />
 							</Router>
 						</main>
