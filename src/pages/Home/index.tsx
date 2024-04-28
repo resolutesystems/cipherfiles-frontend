@@ -359,6 +359,10 @@ export function Home() {
                     <button onClick={copyDeleteUrl} class="border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all">
                         {deleteUrl}
                     </button>
+                    <div class="h-[1px] my-2 mx-28"></div>
+                    <p class="text-center">
+                    <a class="text-accent text-xl" onClick={() => window.location.href="/"}>{translatedText('Go back!')}</a>
+                    </p>
                 </div>
             )}
             {state !== "uploading" && !files && uploadedFiles.length > 0 && (
