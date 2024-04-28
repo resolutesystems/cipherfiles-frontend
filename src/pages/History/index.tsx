@@ -128,11 +128,11 @@ export function History() {
         let remainingTime = '';
 
         if (days > 0) {
-            remainingTime += `${days} ${days === 1 ? translatedText('day') : translatedText('days')}, `;
+            remainingTime += `${days} ${days === 1 ? translatedText('day') : translatedText('days')} `;
         }
 
         if (hours > 0) {
-            remainingTime += `${hours} ${hours === 1 ? translatedText('hour') : translatedText('hours')}, `;
+            remainingTime += `${hours} ${hours === 1 ? translatedText('hour') : translatedText('hours')} `;
         }
 
         if (minutes > 0 || hours > 0) {

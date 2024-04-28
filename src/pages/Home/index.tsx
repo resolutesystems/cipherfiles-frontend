@@ -264,38 +264,53 @@ export function Home() {
                                                 <div class={styles.encryptedButtonDot}/>
                                             </button>
                                         </div>
-                                        <div class="my-3 mx-28">
-                                            <label>
-                                                {translatedText('Expiry option:')}
-                                                <select
-                                                    value={expiryOption}
-                                                    onChange={(e) => setExpiryOption(e.currentTarget.value as "hours" | "downloads" | null)}
-                                                >
-                                                    <option value={null}>{translatedText('None')}</option>
-                                                    <option value="hours">{translatedText('After hours')}</option>
-                                                    <option value="downloads">{translatedText('After downloads')}</option>
-                                                </select>
-                                            </label>
-                                            {expiryOption && (
-                                                <label>
-                                                    {expiryOption === "hours" ? translatedText('Expiry after hours:') : translatedText('Expiry after downloads:')}
-                                                    <input
-                                                        type="number"
-                                                        value={expiryValue ?? ''}
-                                                        onChange={(e) => setExpiryValue(parseInt(e.currentTarget.value))}
-                                                    />
-                                                </label>
-                                            )}
+                                        <div class="my-3">
+                                        <div class={styles.encrypted}>
+                                            {translatedText('Would you like this file to expire?')}
+                                            <button 
+                                                class={`${styles.encryptedButton} ${expiryOption ? styles.encryptedButtonActive : ''}`} 
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setExpiryOption(expiryOption ? null : 'hours');
+                                                }}
+                                            >
+                                                &#x200B;
+                                                <div class={styles.encryptedButtonDot}/>
+                                            </button>
                                         </div>
-                                        <div class="my-3 mx-28">
-                                            <label>
+                                        {/* <div class="my-3"></div> */}
+                                        {expiryOption && (
+                                            <div class="my-3 flex items-center">
+                                                <span class="mr-2">
+                                                    {expiryOption === "hours" ? translatedText('Expiry after ') : translatedText('Expiry after ')}
+                                                </span>
                                                 <input
-                                                    type="checkbox"
-                                                    checked={addToHistory}
-                                                    onChange={(e) => setAddToHistory(e.currentTarget.checked)}
+                                                    class="mr-2 w-24 flex px-3 py-2 font-light rounded-lg border border-white whiteshadow bg-transparent text-center
+                                                    [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none
+                                                    "
+                                                    type="number"
+                                                    value={expiryValue ?? ''}
+                                                    min="0"
+                                                    onChange={(e) => setExpiryValue(parseInt(e.currentTarget.value))}
                                                 />
-                                                {translatedText('Add to history')}
-                                            </label>
+                                                <span class="mr-2">
+                                                    <a onClick={() => setExpiryOption('hours')} style={{ textDecoration: expiryOption === 'hours' ? 'underline' : 'none' }}>hours</a> / <a onClick={() => setExpiryOption('downloads')} style={{ textDecoration: expiryOption === 'downloads' ? 'underline' : 'none' }}>downloads</a>
+                                                </span>
+                                            </div>
+                                        )}
+                                        </div>
+                                        <div class={styles.encrypted}>
+                                            {translatedText('Save this file in local history?')}
+                                            <button 
+                                                class={`${styles.encryptedButton} ${addToHistory ? styles.encryptedButtonActive : ''}`} 
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setAddToHistory(!addToHistory);
+                                                }}
+                                            >
+                                                &#x200B;
+                                                <div class={styles.encryptedButtonDot}/>
+                                            </button>
                                         </div>
                                     </>
                                 )}
@@ -321,7 +336,10 @@ export function Home() {
                                     </>
                                 )}
                                 {state !== "uploading" && (
+                                    <>
+                                    <div class="my-2 mx-28"></div>
                                     <p class="text-md text-center text-red-500">{errorMessage}</p>
+                                    </>
                                 )}
                             </>
                         )}

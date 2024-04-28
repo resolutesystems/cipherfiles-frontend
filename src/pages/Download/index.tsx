@@ -18,6 +18,7 @@ export function DownloadPage() {
     const [showDecryptionKeyInput, setShowDecryptionKeyInput] = useState(false);
     const [showForm, setShowForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
+    const [preview, setPreview] = useState(undefined);
 
     useEffect(() => {
         setUploadId(defaultUploadId);
@@ -60,6 +61,15 @@ export function DownloadPage() {
                 setShowDecryptionKeyInput(false);
                 setShowForm(false);
                 setErrorMessage('');
+
+                if (data.bytes <= 104857600) {
+                    fetch(`${API_URL}/download/${uploadId}`)
+                        .then(res => res.blob())
+                        .then(res => {
+                            const imageUrl = URL.createObjectURL(res);
+                            setPreview(imageUrl);
+                        })
+                }
             }
         } catch (error) {
             setErrorMessage(error.message);
@@ -120,16 +130,26 @@ export function DownloadPage() {
                 </form>
             )}
             {fileInfo && (
-                <div>
-                    <div class="my-3 mx-28"></div>
-                    <File
-                        name={fileInfo.fileName}
-                        size={fileInfo.bytes}
-                        progress={null}
-                        canRemove={false}
-                        onRemove={() => {}}
-                    />
-                </div>
+                <>
+                    <div>
+                        <div class="my-3 mx-28"></div>
+                            <File
+                                name={fileInfo.fileName}
+                                size={fileInfo.bytes}
+                                progress={null}
+                                canRemove={false}
+                                onRemove={() => {}}
+                            />
+                        </div>
+                    <div>
+                    {preview !== undefined && (
+                        <div>
+                            <div class="my-3 mx-28"></div>
+                            <img src={preview} class="w-full rounded-lg" onContextMenu={(e) => e.preventDefault()} draggable={false} />
+                        </div>
+                    )}
+                    </div>
+                </>
             )}
             {errorMessage && (
                 <>
