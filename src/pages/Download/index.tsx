@@ -145,7 +145,7 @@ export function DownloadPage() {
                     {preview !== undefined && (
                         <div>
                             <div class="my-3 mx-28"></div>
-                            <img src={preview} class="w-full rounded-lg" onContextMenu={(e) => e.preventDefault()} draggable={false} />
+                            <img src={preview} class="w-full rounded-lg border border-white whiteshadow" onContextMenu={(e) => e.preventDefault()} draggable={false} />
                         </div>
                     )}
                     </div>
