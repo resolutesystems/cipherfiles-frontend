@@ -282,7 +282,7 @@ export function Home() {
                                         {expiryOption && (
                                             <div class="my-3 flex items-center">
                                                 <span class="mr-2">
-                                                    {expiryOption === "hours" ? translatedText('Expiry after ') : translatedText('Expiry after ')}
+                                                    {expiryOption === "hours" ? translatedText('Expiry after') : translatedText('Expiry after')}
                                                 </span>
                                                 <input
                                                     class="mr-2 w-24 flex px-3 py-2 font-light rounded-lg border border-white whiteshadow bg-transparent text-center
@@ -294,7 +294,7 @@ export function Home() {
                                                     onChange={(e) => setExpiryValue(parseInt(e.currentTarget.value))}
                                                 />
                                                 <span class="mr-2">
-                                                    <a onClick={() => setExpiryOption('hours')} style={{ textDecoration: expiryOption === 'hours' ? 'underline' : 'none' }}>hours</a> / <a onClick={() => setExpiryOption('downloads')} style={{ textDecoration: expiryOption === 'downloads' ? 'underline' : 'none' }}>downloads</a>
+                                                    <a onClick={() => setExpiryOption('hours')} style={{ textDecoration: expiryOption === 'hours' ? 'underline' : 'none' }}>{translatedText('hours')}</a> / <a onClick={() => setExpiryOption('downloads')} style={{ textDecoration: expiryOption === 'downloads' ? 'underline' : 'none' }}>{translatedText('downloads')}</a>
                                                 </span>
                                             </div>
                                         )}

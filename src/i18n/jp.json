@@ -65,5 +65,25 @@
     "Decryption Key": "復号キー",
 
     "Successfully deleted": "削除が成功しました",
-    "Return to the home page": "ホームページに戻る"
+    "Return to the home page": "ホームページに戻る",
+
+    "Would you like this file to expire?": "このファイルの有効期限を設定しますか？",
+    "Save this file in local history?": "このファイルをローカル履歴に保存しますか？",
+    "Expiry after": "期限切れ",
+    "Expires after": "期限切れ",
+    "Expired": "期限切れ",
+    "Never expires": "期限切れなし",
+
+    "day": "日",
+    "days": "日",
+    "hour": "時間",
+    "hours": "時間",
+    "minutes": "分",
+    "seconds": "秒",
+
+    "Upload": "アップロード",
+    "downloads": "ダウンロード",
+    "Go back!": "戻る!",
+    
+    "See history of your uploaded files": "アップロードされたファイルの履歴を見る"
 }

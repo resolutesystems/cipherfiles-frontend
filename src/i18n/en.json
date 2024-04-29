@@ -65,5 +65,25 @@
     "Decryption Key": "Decryption Key",
 
     "Successfully deleted": "Successfully deleted",
-    "Return to the home page": "Return to the home page"
+    "Return to the home page": "Return to the home page",
+
+    "Would you like this file to expire?": "",
+    "Save this file in local history?": "",
+    "Expiry after": "Expiry after",
+    "Expires after": "Expires after",
+    "Expired": "Expired",
+    "Never expires": "Never expires",
+
+    "day": "day",
+    "days": "days",
+    "hour": "hour",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds",
+
+    "Upload": "Upload",
+    "downloads": "downloads",
+    "Go back!": "Go back!",
+    
+    "See history of your uploaded files": "See history of your uploaded files"
 }

@@ -65,5 +65,25 @@
     "Decryption Key": "Klucz deszyfrujący",
 
     "Successfully deleted": "Pomyślnie usunięto",
-    "Return to the home page": "Wróć do strony głównej"
+    "Return to the home page": "Wróć do strony głównej",
+
+    "Would you like this file to expire?": "Czy chcesz aby ten plik wygasł?",
+    "Save this file in local history?": "Zapisać ten plik w lokalnej historii?",
+    "Expiry after": "Wygaśnie za",
+    "Expires after": "Wygaśnie za",
+    "Expired": "Wygasł",
+    "Never expires": "Nigdy nie wygasa",
+
+    "day": "dzień",
+    "days": "dni",
+    "hour": "godzinę",
+    "hours": "godzin",
+    "minutes": "minut",
+    "seconds": "sekund",
+
+    "Upload": "Prześlij",
+    "downloads": "pobrań",
+    "Go back!": "Powrót!",
+    
+    "See history of your uploaded files": "Zobacz historię swoich przesłanych plików"
 }

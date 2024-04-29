@@ -29,7 +29,7 @@ export function Footer() {
     const handleLanguageChange = (lang) => {
         setLanguage(lang);
         localStorage.setItem('lang', lang);
-        window.location.href = '/';
+        window.location.reload()
     };
 
     const getEmoji = (name: string) => {

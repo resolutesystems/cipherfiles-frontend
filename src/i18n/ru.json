@@ -65,5 +65,25 @@
     "Decryption Key": "Ключ расшифровки",
     
     "Successfully deleted": "Успешно удалено",
-    "Return to the home page": "Вернуться на главную страницу"    
+    "Return to the home page": "Вернуться на главную страницу",
+
+    "Would you like this file to expire?": "Хотели бы вы, чтобы этот файл истек?",
+    "Save this file in local history?": "Сохранить этот файл в локальной истории?",
+    "Expiry after": "Истекает через",
+    "Expires after": "Истекает через",
+    "Expired": "Истек срок",
+    "Never expires": "Никогда не истекает",
+
+    "day": "день",
+    "days": "дней",
+    "hour": "час",
+    "hours": "часов",
+    "minutes": "минут",
+    "seconds": "секунд",
+
+    "Upload": "Загрузить",
+    "downloads": "загрузок",
+    "Go back!": "Вернуться!",
+    
+    "See history of your uploaded files": "Просмотреть историю ваших загруженных файлов"
 }
