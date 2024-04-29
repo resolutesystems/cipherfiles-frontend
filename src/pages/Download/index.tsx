@@ -63,7 +63,7 @@ export function DownloadPage() {
                 setErrorMessage('');
 
                 if (data.bytes <= 104857600) {
-                    fetch(`${API_URL}/download/${uploadId}`)
+                    fetch(`${API_URL}/preview/${uploadId}`)
                         .then(res => res.blob())
                         .then(res => {
                             const imageUrl = URL.createObjectURL(res);
