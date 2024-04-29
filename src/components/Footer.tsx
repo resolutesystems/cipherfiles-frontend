@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import { gsap } from 'gsap';
-import { COMMUNITY_URL, FOOTER_QUOTE } from './helpers';
+import { API_URL, COMMUNITY_URL, FOOTER_QUOTE, formatBytes } from './helpers';
 import { useTranslations as useTranslationsBase } from './i18n';
 import us from "../assets/langs/us.png";
 import pl from "../assets/langs/pl.png";
@@ -12,6 +12,7 @@ import de from "../assets/langs/de.png";
 export function Footer() {
     const { translatedText } = useTranslationsBase();
     const [language, setLanguage] = useState(localStorage.getItem('lang') || 'en');
+    const [stats, setStats] = useState({ uploadedFiles: 0, usedSpace: 0 });
 
     useEffect(() => {
         const langFromStorage = localStorage.getItem('lang');
@@ -24,7 +25,26 @@ export function Footer() {
         }, {
             translateY: 0, autoAlpha: 1, scale: 1, duration: .4, ease: 'back', delay: .4, stagger: .1,
         });
+
+        fetchStats();
+
+        const interval = setInterval(fetchStats, 1000);
+
+        return () => clearInterval(interval);
     }, []);
+
+    const fetchStats = async () => {
+        try {
+            const response = await fetch(`${API_URL}/stats`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch stats');
+            }
+            const data = await response.json();
+            setStats({ uploadedFiles: data.uploads, usedSpace: data.bytes });
+        } catch (error) {
+            console.error('Error fetching stats:', error);
+        }
+    };
 
     const handleLanguageChange = (lang) => {
         setLanguage(lang);
@@ -69,6 +89,7 @@ export function Footer() {
                 <li><a class="text-neutral-500" href="/faq">{getEmoji(translatedText('faq'))}</a></li>
                 <li><a class="text-neutral-500" href={COMMUNITY_URL} target="_blank" rel="noopener noreferrer">{getEmoji(translatedText('our community'))}</a></li>
             </ul>
+            <h1 class="text-neutral-500 text-md">Uploaded files: <a>{stats.uploadedFiles}</a> | Used space: <a>{formatBytes(stats.usedSpace)}</a></h1>
             <p class="text-neutral-500 text-sm">{FOOTER_QUOTE}</p>
         </div>
     );
