@@ -19,6 +19,7 @@ export function DownloadPage() {
     const [showForm, setShowForm] = useState(true);
     const [errorMessage, setErrorMessage] = useState('');
     const [preview, setPreview] = useState(undefined);
+    const [contentType, setContentType] = useState('');
 
     useEffect(() => {
         setUploadId(defaultUploadId);
@@ -45,10 +46,10 @@ export function DownloadPage() {
             if (showDecryptionKeyInput && decryptionKey) {
                 url += `?key=${decryptionKey}`;
             }
-
+    
             const response = await fetch(url);
             const data = await response.json();
-
+    
             if (!response.ok) {
                 if (data.errorCode === "missing-key") {
                     setShowDecryptionKeyInput(true);
@@ -61,21 +62,34 @@ export function DownloadPage() {
                 setShowDecryptionKeyInput(false);
                 setShowForm(false);
                 setErrorMessage('');
-
+    
                 if (data.bytes <= 104857600) {
-                    fetch(`${API_URL}/preview/${uploadId}`)
-                        .then(res => res.blob())
-                        .then(res => {
-                            const imageUrl = URL.createObjectURL(res);
+                    const previewResponse = await fetch(`${API_URL}/preview/${uploadId}`);
+                    if (previewResponse.ok) {
+                        const contentType = previewResponse.headers.get('Content-Type');
+                        setContentType(contentType);
+                        if (contentType && (contentType.startsWith('image/') || contentType.startsWith('video/'))) {
+                            const blob = await previewResponse.blob();
+                            const imageUrl = URL.createObjectURL(blob);
                             setPreview(imageUrl);
-                        })
+                        } else {
+                            setPreview(undefined);
+                        }
+                    } else {
+                        const errorData = await previewResponse.json();
+                        if (errorData.errorCode === 'preview-not-supported') {
+                            setPreview(undefined);
+                        } else {
+                            console.error('Error fetching file preview:', errorData);
+                        }
+                    }
                 }
             }
         } catch (error) {
             setErrorMessage(error.message);
             console.error('Error fetching file info:', error.message);
         }
-    };
+    };    
 
     const handleDownload = async () => {
         try {
@@ -143,11 +157,17 @@ export function DownloadPage() {
                         </div>
                     <div>
                     {preview !== undefined && (
-                        <div>
-                            <div class="my-3 mx-28"></div>
-                            <img src={preview} class="w-full rounded-lg border border-white whiteshadow" onContextMenu={(e) => e.preventDefault()} draggable={false} />
-                        </div>
-                    )}
+                            <div>
+                                <div class="my-3 mx-28"></div>
+                                {contentType.startsWith('image/') ? (
+                                    <img src={preview} class="w-full rounded-lg border border-white whiteshadow" onContextMenu={(e) => e.preventDefault()} draggable={false} />
+                                ) : contentType.startsWith('video/') ? (
+                                    <video src={preview} class="w-full rounded-lg border border-white whiteshadow" controls />
+                                ) : (
+                                    setPreview(undefined)
+                                )}
+                            </div>
+                        )}
                     </div>
                 </>
             )}
