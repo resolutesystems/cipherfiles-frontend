@@ -147,3 +147,28 @@ input::selection {
         max-width: none;
     }
 }
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+ 
+:-moz-placeholder {
+    text-align: center;  
+}
+ 
+::-moz-placeholder {
+    text-align: center;  
+}
+ 
+:-ms-input-placeholder {  
+    text-align: center; 
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+textarea::selection {
+    background-color: $branding;
+    color: $dark;
+}

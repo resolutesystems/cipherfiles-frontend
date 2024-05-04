@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { File } from '../../components/File';
+import { FileComponent } from '../../components/File';
 import { Button } from '../../components/Button';
 import styles from './header.module.scss'
 import { WEBSITE_URL, API_URL } from '../../components/helpers';
@@ -27,6 +27,8 @@ export function Home() {
         createdAt: string;
         expiresAt: string | null;
     }[]>([]);
+    const [pastedText, setPastedText] = useState<string>("");
+    const [showPasteText, setShowPasteText] = useState(false);
 
     useEffect(() => {
         const storedFiles = localStorage.getItem('uploadedFiles');
@@ -206,6 +208,29 @@ export function Home() {
         setFiles(dataTransfer.files);
     };
 
+    const handleTextPaste = (event: Event) => {
+        const target = event.target as HTMLTextAreaElement;
+        const pastedText = target.value;
+        setPastedText(pastedText);
+    };
+    
+    const addPastedTextAsFile = () => {
+        const blob = new Blob([pastedText], { type: 'text/plain' });
+        const pastedFile = new File([blob], "pasted_text.txt"); // todo(stan): set custom names for pastes
+    
+        const dataTransfer = new DataTransfer();
+    
+        dataTransfer.items.add(pastedFile);
+    
+        const fileList = dataTransfer.files;
+        setFiles(fileList);
+        setErrorMessage("");
+    };
+
+    const togglePasteText = () => {
+        setShowPasteText(!showPasteText);
+    };
+
     return (
         <div>
             {state === "selecting" || state === "uploading" ? (
@@ -222,18 +247,18 @@ export function Home() {
                         {files && files.length > 0 && (
                             <div id={"file"} class="flex flex-col gap-2 mb-5">
                                 {Array.from(files).map((file, index) => (
-                                    <File name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} onRemove={() => removeFile(index)} />
+                                    <FileComponent name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} onRemove={() => removeFile(index)} />
                                 ))}
                             </div>
                         )}
                         {state === "selecting" && (
+                        <>
                             <label class={`flex flex-col items-center py-6 rounded-lg border border-white cursor-pointer transition-colors whiteshadow ${isDragging ? styles.whiteshadow : ''}`}
-                            onDragOver={handleDragOver}
-                            onDragLeave={handleDragLeave}
-                            onDrop={handleDrop}>
+                                onDragOver={handleDragOver}
+                                onDragLeave={handleDragLeave}
+                                onDrop={handleDrop}>
                                 <input onChange={(e) => {
                                     const files = e.currentTarget.files;
-                                    
                                     const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
                                     if (totalSize > 1024 * 1024 * 1024) {
                                         setErrorMessage(translatedText('Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.'));
@@ -242,9 +267,20 @@ export function Home() {
                                         setErrorMessage("");
                                     }
                                 }} class="hidden" type="file" name="files" required />
-
-                                <p class="px-3 text-center">{translatedText('Click to select files or drag and drop here')}</p>
+                                <p class="px-3 text-center">
+                                    {translatedText('Click to select files or drag and drop here')}
+                                </p>
                             </label>
+                            <div class="my-2 mx-28"></div>
+                            <div class="flex flex-col items-center">
+                                <textarea style={"resize: vertical;"} placeholder="Maybe you want to paste text?" onChange={handleTextPaste} class="border border-white bg-transparent rounded-md p-2 resize-none w-full" rows={4} />
+                            </div>
+                            <div class="my-2 mx-28"></div>
+                            {/* <Button text={translatedText('Submit')} onClick={addPastedTextAsFile} /> */}
+                            {pastedText.length > 0 && (
+                                <Button text={translatedText('Submit')} onClick={addPastedTextAsFile} />
+                            )}
+                        </>
                         )}
                         {files && files.length > 0 && (
                             <>

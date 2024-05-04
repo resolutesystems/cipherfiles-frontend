@@ -175,7 +175,7 @@ export function Testing() {
                         {files && files.length > 0 && (
 							<div id={"file"} class="flex flex-col gap-2 mb-5">
 								{Array.from(files).map((file, index) => (
-									<File name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} onRemove={() => removeFile(index)} />
+									<FileComponent name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} onRemove={() => removeFile(index)} />
 								))}
 							</div>
 						)}

@@ -10,7 +10,7 @@ interface Props {
     onRemove: () => void;
 }
 
-export function File({ name, progress, size, canRemove, onRemove }: Props) {
+export function FileComponent({ name, progress, size, canRemove, onRemove }: Props) {
     const lastDotIndex = name.lastIndexOf('.');
     let fileNameWithoutExtension = name;
     let fileExtension = '';
@@ -47,4 +47,3 @@ export function File({ name, progress, size, canRemove, onRemove }: Props) {
         </div>
     );
 };
-

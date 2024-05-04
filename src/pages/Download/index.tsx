@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'preact/hooks';
 import { useRoute } from 'preact-iso';
 import { useTranslations } from '../../components/i18n';
-import { File } from '../../components/File';
+import { FileComponent } from '../../components/File';
 import { API_URL } from '../../components/helpers';
 
 export function DownloadPage() {
@@ -147,7 +147,7 @@ export function DownloadPage() {
                 <>
                     <div>
                         <div class="my-3 mx-28"></div>
-                            <File
+                            <FileComponent
                                 name={fileInfo.fileName}
                                 size={fileInfo.bytes}
                                 progress={null}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import { useTranslations } from '../../components/i18n';
-import { File } from '../../components/File';
+import { FileComponent } from '../../components/File';
 import { WEBSITE_URL, API_URL } from '../../components/helpers';
 
 export function History() {
@@ -94,7 +94,7 @@ export function History() {
             {uploadedFiles.map((file, index) => (
                 <div key={index}>
                     <div class="my-3 mx-28"></div>
-                    <File
+                    <FileComponent
                         name={file.name}
                         size={file.size}
                         progress={null}
