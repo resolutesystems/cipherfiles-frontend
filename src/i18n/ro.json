@@ -1,0 +1,91 @@
+{
+    "Cipher Files": "Cipher Files",
+    "Resolute Systems": "Resolute Systems",
+
+    "home": "acasă",
+    "tos": "tos",
+    "report abuse": "raportați abuzul",
+    "faq": "faq",
+    "our community": "comunitatea noastră",
+
+    "Uploading your files": "Încărcarea fișierelor dvs.",
+    "complete": "complet",
+    "Upload your files": "Încărcați fișierele dvs.",
+    "Maximum upload file size: <strong>1 GB</strong>": "Dimensiunea maximă a fișierului pentru încărcare: <strong>1 GB</strong>",
+    "Click to select files or drag and drop here": "Faceți clic pentru a selecta fișiere sau trageți și plasați aici",
+    "Wanna encrypt a file?": "Doriți să criptați un fișier?",
+
+    "Copied download url to clipboard!": "URL-ul de descărcare a fost copiat în clipboard!",
+    "Copied delete url to clipboard!": "URL-ul de ștergere a fost copiat în clipboard!",
+
+    "404: Not Found": "404: Nu a fost găsit",
+
+    "You can only upload one file at a time.": "Puteți încărca doar un singur fișier odată.",
+    "Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.": "Dimensiunea totală a fișierelor depășește limita de 1 GB. Vă rugăm să încărcați fișiere mai mici de 1 GB.",
+    "File uploaded": "Fișier încărcat",
+    "Download link": "Link de descărcare",
+    "Delete link": "Link de ștergere",
+
+    "Terms of Service": "Termeni de utilizare",
+    "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "Deoarece suntem conștienți de confidențialitate și apreciem libertatea de partajare, ne propunem să avem cât mai puține restricții posibile:",
+    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Nu abuzați de exploatarea serviciului, dacă găsiți vreuna <a href=\"/report-abuse\">vă rugăm să o raportați.</a>",
+    "Uploading illegal or copyrighted content is forbidden.": "Încărcarea de conținut ilegal sau protejat de drepturi de autor este interzisă.",
+
+    "Privacy Policy": "Politica de confidențialitate",
+    "We do not collect data, use cookies, employ analytics, show ads, or maintain logs. All files uploaded to the service can be encrypted using an unbreakable cipher, and only you possess the decryption key.": "Nu colectăm date, nu folosim cookie-uri, nu folosim analize, nu afișăm reclame și nu menținem jurnale. Toate fișierele încărcate în serviciu pot fi criptate folosind un cifru inexpugnabil, iar doar dumneavoastră dețineți cheia de decriptare.",
+
+    "Report Abuse": "Raportați abuzul",
+    "If you want to report illegal or copyrighted content, please email us at": "Dacă doriți să raportați conținut ilegal sau protejat de drepturi de autor, vă rugăm să ne trimiteți un email la",
+    "Remember to include as much information as possible, including the full download URL (with decryption key) and a description of the content.": "Nu uitați să includeți cât mai multe informații posibile, inclusiv URL-ul complet de descărcare (cu cheia de decriptare) și o descriere a conținutului.",
+
+    "Why should I trust you?": "De ce să vă încredințez?",
+    "You shouldn't! Any third party can be compromised, even the most trusted services can be honeypots or legally forced to spy on you and your data. You should always be careful about what you're uploading. <br/><b>Any personal data should be encrypted.</b>": "Nu ar trebui! Orice terț poate fi compromis, chiar și cele mai de încredere servicii pot fi capcane sau forțate legal să vă spioneze pe dumneavoastră și datele dumneavoastră. Trebuie să fiți întotdeauna atenți la ceea ce încărcați. <br/><b>Orice date personale ar trebui să fie criptate.</b>",
+    "What makes you different from other file sharing services?": "Ce vă deosebește de alte servicii de partajare a fișierelor?",
+    "What makes us different from other file sharing services is that we do not require you to create an account in order to use our service and we do not require you to disclose any personal information to us <br/>(i.e. your real name, email address, phone number, etc.).": "Ceea ce ne deosebește de alte servicii de partajare a fișierelor este că nu vă cerem să vă creați un cont pentru a folosi serviciul nostru și nu vă cerem să ne dezvăluiți nicio informație personală <br/>(adică numele dumneavoastră real, adresa de email, numărul de telefon, etc.).",
+    "Who has the decryption key?": "Cine deține cheia de decriptare?",
+    "Decryption key is given in the URL after uploading encrypted files. We don't store the key anywhere on our servers thus you need to take care of it because we can't recover it.": "Cheia de decriptare este dată în URL după încărcarea fișierelor criptate. Noi nu stocăm cheia nicăieri pe serverele noastre, astfel încât trebuie să aveți grijă de ea pentru că noi nu o putem recupera.",
+    "What data do you collect?": "Ce date colectați?",
+    "We do not store any data about you nor how you use the service. You can read more at <a class=\"text-accent link\" href=\"/terms-of-service\">termeni de utilizare</a>. We also do not have any trackers, CAPTCHA spying, fingerprinting or ads on our website.": "Nu stocăm nicio date despre dumneavoastră sau cum utilizați serviciul. Puteți citi mai multe la <a class=\"text-accent link\" href=\"/terms-of-service\">termeni de utilizare</a>. De asemenea, nu avem niciun tracker, spionaj CAPTCHA, amprentare digitală sau reclame pe site-ul nostru.",
+    "Someone uploaded illegal content": "Cineva a încărcat conținut ilegal",
+    "If someone sent you a download link with illegal content, you are obligated to report it through <a class=\"text-accent link\" href=\"/report-abuse\">formularul de raportare a abuzurilor</a>!": "Dacă cineva v-a trimis un link de descărcare cu conținut ilegal, sunteți obligat să îl raportați prin <a class=\"text-accent link\" href=\"/report-abuse\">formularul de raportare a abuzurilor</a>!",
+    "Why it takes so long to upload/download encrypted files?": "De ce durează atât de mult încărcarea/descărcarea fișierelor criptate?",
+    "The main reason behind this is encryption and decryption, which can take long time with large files. As well as limited server resources.": "Motivul principal este criptarea și decriptarea, care pot dura mult timp cu fișierele mari. Precum și resursele limitate ale serverului.",
+
+    "An error occurred while deleting the file.": "A apărut o eroare în timpul ștergerii fișierului.",
+    "Remove your files": "Eliminați fișierele dvs.",
+    "Upload ID": "ID-ul încărcării",
+    "Delete key": "Cheie de ștergere",
+    "Confirm": "Confirmare",
+    "Download": "Descărcare",
+    "Deleting...": "Se șterge...",
+
+    "Downloads": "Descărcări",
+    "Download your files": "Descărcați fișierele dvs.",
+
+    "Decryption Key": "Cheie de decriptare",
+
+    "Successfully deleted": "Șters cu succes",
+    "Return to the home page": "Întoarceți-vă la pagina principală",
+
+    "Would you like this file to expire?": "Doriți ca acest fișier să expire?",
+    "Save this file in local history?": "Salvați acest fișier în istoricul local?",
+    "Expiry after": "Expiră după",
+    "Expires after": "Expiră după",
+    "Expired": "Expirat",
+    "Never expires": "Nu expiră",
+
+    "day": "zi",
+    "days": "zile",
+    "hour": "oră",
+    "hours": "ore",
+    "minutes": "minute",
+    "seconds": "secunde",
+
+    "Upload": "Încărcare",
+    "downloads": "descărcări",
+    "Go back!": "Înapoi!",
+
+    "See history of your uploaded files": "Vezi istoricul fișierelor încărcate de dvs.",
+    "Uploaded files": "Fișiere încărcate",
+    "Used space": "Spațiu utilizat"
+}

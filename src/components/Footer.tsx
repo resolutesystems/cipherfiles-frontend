@@ -2,12 +2,13 @@ import { useState, useEffect } from 'preact/hooks';
 import { gsap } from 'gsap';
 import { API_URL, COMMUNITY_URL, FOOTER_QUOTE, formatBytes } from './helpers';
 import { useTranslations as useTranslationsBase } from './i18n';
-import us from "../assets/langs/us.png";
-import pl from "../assets/langs/pl.png";
-import ru from "../assets/langs/ru.png";
-import fr from "../assets/langs/fr.png";
-import jp from "../assets/langs/jp.png";
-import de from "../assets/langs/de.png";
+import us from "../assets/flags/us.svg";
+import pl from "../assets/flags/pl.svg";
+import ru from "../assets/flags/ru.svg";
+import fr from "../assets/flags/fr.svg";
+import jp from "../assets/flags/jp.svg";
+import de from "../assets/flags/de.svg";
+import ro from "../assets/flags/ro.svg";
 
 export function Footer() {
     const { translatedText } = useTranslationsBase();
@@ -71,12 +72,13 @@ export function Footer() {
     return (
         <div id="footer" class="footer">
             <div style={{ maxWidth: 'none', display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                <img src={us} alt="English" title="English" style={{ width: '25px', cursor: 'pointer', filter: language === 'en' ? 'none' : 'grayscale(100%)'}} onClick={() => handleLanguageChange('en')} />
-                <img src={pl} alt="Polski" title="Polski" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'pl' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('pl')} />
-                <img src={ru} alt="Русский" title="Русский" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'ru' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('ru')} />
-                <img src={fr} alt="Français" title="Français" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'fr' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('fr')} />
-                <img src={jp} alt="日本語" title="日本語" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'jp' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('jp')} />
-                <img src={de} alt="Deutsch" title="Deutsch" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'de' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('de')} />
+                <img class="rounded-[10%]" src={us} alt="English" title="English" style={{ width: '25px', cursor: 'pointer', filter: language === 'en' ? 'none' : 'grayscale(100%)'}} onClick={() => handleLanguageChange('en')} />
+                <img class="rounded-[10%]" src={pl} alt="Polski" title="Polski" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'pl' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('pl')} />
+                <img class="rounded-[10%]" src={ru} alt="Русский" title="Русский" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'ru' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('ru')} />
+                <img class="rounded-[10%]" src={fr} alt="Français" title="Français" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'fr' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('fr')} />
+                <img class="rounded-[10%]" src={jp} alt="日本語" title="日本語" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'jp' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('jp')} />
+                <img class="rounded-[10%]" src={de} alt="Deutsch" title="Deutsch" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'de' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('de')} />
+                <img class="rounded-[10%]" src={ro} alt="Limba Română" title="Limba Română" style={{ width: '25px', cursor: 'pointer', marginLeft: '5px', filter: language === 'ro' ? 'none' : 'grayscale(100%)' }} onClick={() => handleLanguageChange('ro')} />
             </div>
             <ul class="flex flex-wrap justify-center gap-x-3" style={{ textAlign: 'center', listStyle: 'none', padding: 0 }}>
                 <a class="text-neutral-500" href="/">{getEmoji(translatedText('home'))}</a>
