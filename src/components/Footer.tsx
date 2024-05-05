@@ -52,15 +52,15 @@ export function Footer() {
     const getEmoji = (name: string) => {
         if (window.innerWidth <= 600) {
             switch (name) {
-                case 'home':
+                case translatedText('home'):
                     return '🏠';
-                case 'tos':
+                case translatedText('tos'):
                     return '📄';
-                case 'report abuse':
+                case translatedText('report abuse'):
                     return '⚠️';
-                case 'faq':
+                case translatedText('faq'):
                     return '❓';
-                case 'our community':
+                case translatedText('our community'):
                     return '👥';
                 default:
                     return '';
