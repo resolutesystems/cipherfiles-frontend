@@ -19,6 +19,7 @@ export function Home() {
     const [expiryOption, setExpiryOption] = useState<"hours" | "downloads" | null>(null);
     const [expiryValue, setExpiryValue] = useState<number | null>(null);
     const [addToHistory, setAddToHistory] = useState<boolean>(false);
+    const [embeddedPreview, setEmbeddedPreview] = useState<boolean>(false);
     const [uploadedFiles, setUploadedFiles] = useState<{
         id: string;
         url: string;
@@ -79,6 +80,12 @@ export function Home() {
                     url += `?encrypt=true${expiryParam}`;
                 } else {
                     url += `?encrypt=false${expiryParam}`;
+                }
+
+                if (embeddedPreview) {
+                    url += '&embedded=true';
+                } else {
+                    url += '&embedded=false';
                 }
     
                 xhr.open('POST', url, true);
@@ -231,6 +238,10 @@ export function Home() {
         setShowPasteText(!showPasteText);
     };
 
+    const isMedia = (file) => {
+        return file.type.startsWith('image/') || file.type.startsWith('video/');
+    };
+
     return (
         <div>
             {state === "selecting" || state === "uploading" ? (
@@ -348,6 +359,24 @@ export function Home() {
                                                 <div class={styles.encryptedButtonDot}/>
                                             </button>
                                         </div>
+                                        {isMedia(files[0]) && (
+                                            <>
+                                                <div class="my-[6px]"></div>
+                                                <div class={styles.encrypted}>
+                                                    {translatedText('Embed the preview?')}
+                                                    <button 
+                                                        class={`${styles.encryptedButton} ${embeddedPreview ? styles.encryptedButtonActive : ''}`} 
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setEmbeddedPreview(!embeddedPreview);
+                                                        }}
+                                                    >
+                                                        &#x200B;
+                                                        <div class={styles.encryptedButtonDot}/>
+                                                    </button>
+                                                </div>
+                                            </>
+                                        )}
                                     </>
                                 )}
                                 {state === "uploading" && (

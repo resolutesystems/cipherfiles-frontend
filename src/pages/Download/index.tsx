@@ -108,6 +108,14 @@ export function DownloadPage() {
         }
     };
 
+    {contentType.startsWith('image/') && contentType.includes('embedded=1') && (
+        <meta property="og:image" content={preview} />
+    )}
+    
+    {contentType.startsWith('video/') && contentType.includes('embedded=1') && (
+        <meta property="og:video" content={preview} />
+    )}
+
     return (
         <div>
             <h1 class="text-center text-3xl font-bold mb-1">{translatedText('Download your files')}</h1>
