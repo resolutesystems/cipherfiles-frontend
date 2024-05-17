@@ -39,6 +39,56 @@ export function DownloadPage() {
         setDecryptionKey(e.target.value);
     };
 
+    // const fetchPreview = async (uploadId) => {
+    //     try {
+    //         const previewResponse = await fetch(`${API_URL}/preview/${uploadId}`);
+    //         if (previewResponse.ok) {
+    //             const contentType = previewResponse.headers.get('Content-Type');
+    //             if (contentType.includes('embedded=1')) {
+    //                 if (contentType.startsWith('image/') || contentType.startsWith('video/')) {
+    //                     const blob = await previewResponse.blob();
+    //                     const previewUrl = URL.createObjectURL(blob);
+    //                     setMetaTags(previewUrl, contentType);
+    //                 }
+    //             }
+    //         } else {
+    //             const errorData = await previewResponse.json();
+    //             if (errorData.errorCode === 'preview-not-supported') {
+    //                 console.error('Preview not supported');
+    //             } else {
+    //                 console.error('Error fetching file preview:', errorData);
+    //             }
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching file preview:', error.message);
+    //     }
+    // };
+    
+    // const setMetaTags = (previewUrl, contentType) => {
+    //     const head = document.head;
+
+    //     const existingOgImage = document.querySelector('meta[property="og:image"]');
+    //     if (existingOgImage) head.removeChild(existingOgImage);
+    
+    //     const existingOgVideo = document.querySelector('meta[property="og:video"]');
+    //     if (existingOgVideo) head.removeChild(existingOgVideo);
+    
+    //     const metaTag = document.createElement('meta');
+    //     if (contentType.startsWith('image/')) {
+    //         metaTag.setAttribute('property', 'og:image');
+    //     } else if (contentType.startsWith('video/')) {
+    //         metaTag.setAttribute('property', 'og:video');
+    //     }
+    //     metaTag.setAttribute('content', previewUrl);
+    //     head.appendChild(metaTag);
+    // };
+
+    // useEffect(() => {
+    //     fetchPreview(defaultUploadId);
+    // }, []);
+
+    // todo: fix embedded info request 123124214
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -107,14 +157,6 @@ export function DownloadPage() {
             console.error('Error downloading file:', error.message);
         }
     };
-
-    {contentType.startsWith('image/') && contentType.includes('embedded=1') && (
-        <meta property="og:image" content={preview} />
-    )}
-    
-    {contentType.startsWith('video/') && contentType.includes('embedded=1') && (
-        <meta property="og:video" content={preview} />
-    )}
 
     return (
         <div>

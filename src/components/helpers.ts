@@ -3,6 +3,9 @@ export const WEBSITE_URL = "http://127.0.0.1:5173";
 export const COMMUNITY_URL = "https://discord.gg/DmRhftYcvN";
 export const FOOTER_QUOTE = `© ${new Date().getFullYear()} Resolute Systems. All rights reserved.`;
 export const ABUSE_EMAIL = "abuse@cipherfiles.com";
+// For FooterWithFounders.tsx
+export const STAN_SOCIAL = "https://github.com/stanislawkuriata";
+export const HITO_SOCIAL = "https://github.com/HitoIRL";
 
 export function formatBytes(bytes: number, decimals = 2) {
     if (!+bytes) return "0 B"
