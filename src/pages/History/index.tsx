@@ -104,7 +104,7 @@ export function History() {
                     <div class="my-3 mx-28"></div>
                     <div class="flex justify-between items-center">
                     <div>
-                    <a href={`${WEBSITE_URL}/download/${file.id}`} className="text-white/50 text-md text-left">{translatedText('Download')}</a>
+                    <a href={`${WEBSITE_URL}/download/${file.id}`} class="text-white/50 text-md text-left">{translatedText('Download')}</a>
                     </div>
                     <div class="text-right">
                         {file.expiresAt && !file.expiresAt.startsWith('Expires after') ? (

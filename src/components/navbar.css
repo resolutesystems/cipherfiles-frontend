@@ -1,0 +1,10 @@
+.menu-link {
+  margin-right: 4px;
+  padding: 2px 6px;
+  transition: transform 0.3s ease;
+}
+
+.menu-link:hover {
+  background-color: #805AD5;
+  border-radius: 4px;
+}
