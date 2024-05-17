@@ -28,7 +28,7 @@
 
     "Terms of Service": "Termeni de utilizare",
     "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "Deoarece suntem conștienți de confidențialitate și apreciem libertatea de partajare, ne propunem să avem cât mai puține restricții posibile:",
-    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Nu abuzați de exploatarea serviciului, dacă găsiți vreuna <a href=\"/report-abuse\">vă rugăm să o raportați.</a>",
+    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Nu abuzați site-ul, dacă găsiți o modalitate de exploatare, <a href=\"/report-abuse\">vă rugăm să o raportați.</a>",
     "Uploading illegal or copyrighted content is forbidden.": "Încărcarea de conținut ilegal sau protejat de drepturi de autor este interzisă.",
 
     "Privacy Policy": "Politica de confidențialitate",
@@ -38,7 +38,7 @@
     "If you want to report illegal or copyrighted content, please email us at": "Dacă doriți să raportați conținut ilegal sau protejat de drepturi de autor, vă rugăm să ne trimiteți un email la",
     "Remember to include as much information as possible, including the full download URL (with decryption key) and a description of the content.": "Nu uitați să includeți cât mai multe informații posibile, inclusiv URL-ul complet de descărcare (cu cheia de decriptare) și o descriere a conținutului.",
 
-    "Why should I trust you?": "De ce să vă încredințez?",
+    "Why should I trust you?": "De ce aș avea încredere în tine?",
     "You shouldn't! Any third party can be compromised, even the most trusted services can be honeypots or legally forced to spy on you and your data. You should always be careful about what you're uploading. <br/><b>Any personal data should be encrypted.</b>": "Nu ar trebui! Orice terț poate fi compromis, chiar și cele mai de încredere servicii pot fi capcane sau forțate legal să vă spioneze pe dumneavoastră și datele dumneavoastră. Trebuie să fiți întotdeauna atenți la ceea ce încărcați. <br/><b>Orice date personale ar trebui să fie criptate.</b>",
     "What makes you different from other file sharing services?": "Ce vă deosebește de alte servicii de partajare a fișierelor?",
     "What makes us different from other file sharing services is that we do not require you to create an account in order to use our service and we do not require you to disclose any personal information to us <br/>(i.e. your real name, email address, phone number, etc.).": "Ceea ce ne deosebește de alte servicii de partajare a fișierelor este că nu vă cerem să vă creați un cont pentru a folosi serviciul nostru și nu vă cerem să ne dezvăluiți nicio informație personală <br/>(adică numele dumneavoastră real, adresa de email, numărul de telefon, etc.).",
