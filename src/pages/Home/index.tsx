@@ -223,7 +223,7 @@ export function Home() {
     
     const addPastedTextAsFile = () => {
         const blob = new Blob([pastedText], { type: 'text/plain' });
-        const pastedFile = new File([blob], "pasted_text.txt"); // todo(stan): set custom names for pastes
+        const pastedFile = new File([blob], "pasted_text.txt");
     
         const dataTransfer = new DataTransfer();
     
@@ -260,6 +260,19 @@ export function Home() {
                                 {Array.from(files).map((file, index) => (
                                     <FileComponent name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} onRemove={() => removeFile(index)} />
                                 ))}
+                            </div>
+                        )}
+                        {showPasteText && (
+                            <div id={"paste-text-file"} class="flex flex-col gap-2 mb-5">
+                                <FileComponent
+                                    name={"pasted_text.txt"} 
+                                    size={pastedText.length} 
+                                    progress={null}
+                                    key={"pasted_text"}
+                                    canRemove={true} 
+                                    onRemove={() => setPastedText("")} 
+                                    isPastedText={true} 
+                                />
                             </div>
                         )}
                         {state === "selecting" && (
