@@ -87,5 +87,12 @@
     
     "See history of your uploaded files": "アップロードされたファイルの履歴を見る",
     "Uploaded files": "アップロードされたファイル",
-    "Used space": "使用済みスペース"
+    "Used space": "使用済みスペース",
+
+    "FOUNDED BY": "創立者",
+    "PROVIDERS OF": "提供者",
+
+    "Maybe you want to paste text?": "テキストを貼り付けますか？",
+    "Embed the preview?": "プレビューを埋め込みますか？",
+    "Submit": "送信"
 }

@@ -87,5 +87,12 @@
     
     "See history of your uploaded files": "Просмотреть историю ваших загруженных файлов",
     "Uploaded files": "Загруженные файлы",
-    "Used space": "Используемое пространство"
+    "Used space": "Используемое пространство",
+
+    "FOUNDED BY": "ОСНОВАНО",
+    "PROVIDERS OF": "ПОСТАВЩИКИ",
+
+    "Maybe you want to paste text?": "Может быть, вы хотите вставить текст?",
+    "Embed the preview?": "Встроить предварительный просмотр?",
+    "Submit": "Отправить"
 }

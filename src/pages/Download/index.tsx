@@ -216,6 +216,7 @@ export function DownloadPage() {
                                 size={fileInfo.bytes}
                                 progress={null}
                                 canRemove={false}
+                                canEdit={false}
                                 onRemove={() => {}}
                             />
                         </div>

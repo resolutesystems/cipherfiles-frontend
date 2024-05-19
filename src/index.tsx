@@ -8,7 +8,7 @@ import { Footer } from './components/Footer';
 import { FooterWithFounders } from './components/FooterWithFounders';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home/index';
-import Wordmark from './assets/cipher-files-white.png';
+import Wordmark from './assets/cipher-files-without-fedora.png';
 import { Tos } from './pages/Tos/index';
 import { ReportAbuse } from './pages/ReportAbuse/index';
 import { FAQ } from './pages/FAQ';

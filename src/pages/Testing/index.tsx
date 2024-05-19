@@ -1,7 +1,6 @@
-import { useState } from 'preact/hooks';
-import { File } from '../../components/File';
+import { useState, useEffect } from 'preact/hooks';
+import { FileComponent } from '../../components/File';
 import { Button } from '../../components/Button';
-import { useEffect } from 'preact/hooks';
 import styles from './header.module.scss'
 import { WEBSITE_URL, API_URL } from '../../components/helpers';
 import { useTranslations } from '../../components/i18n';
@@ -17,6 +16,30 @@ export function Testing() {
     const [isEncrypted, setIsEncrypted] = useState(false);
     const [decryptionKey, setDecryptionKey] = useState<string>("");
     const [uploadProgress, setUploadProgress] = useState<number>(0);
+    const [expiryOption, setExpiryOption] = useState<"hours" | "downloads" | null>(null);
+    const [expiryValue, setExpiryValue] = useState<number | null>(null);
+    const [addToHistory, setAddToHistory] = useState<boolean>(false);
+    const [embeddedPreview, setEmbeddedPreview] = useState<boolean>(false);
+    const [uploadedFiles, setUploadedFiles] = useState<{
+        id: string;
+        url: string;
+        name: string;
+        size: number;
+        createdAt: string;
+        expiresAt: string | null;
+    }[]>([]);
+    const [pastedText, setPastedText] = useState<string>("");
+    const [showPasteText, setShowPasteText] = useState(false);
+
+    useEffect(() => {
+        const storedFiles = localStorage.getItem('uploadedFiles');
+        if (storedFiles) {
+            const parsedFiles = JSON.parse(storedFiles);
+            if (Array.isArray(parsedFiles)) {
+                setUploadedFiles(parsedFiles);
+            }
+        }
+    }, []);
 
     const copyDownloadUrl = () => {
         let urlToCopy = downloadUrl;
@@ -42,52 +65,107 @@ export function Testing() {
         event.preventDefault();
         const formData = new FormData();
         setState('uploading');
-
+    
         if (files) {
             for (let i = 0; i < files.length; i++) {
                 formData.append('file', files[i]);
             }
-
+    
             try {
                 const xhr = new XMLHttpRequest();
-                xhr.open('POST', `${API_URL}/upload?encrypt=${isEncrypted}`, true);
-                xhr.withCredentials = true;
+                let url = `${API_URL}/upload`;
+                const expiryParam = getExpiryParam();
+    
+                if (isEncrypted) {
+                    url += `?encrypt=true${expiryParam}`;
+                } else {
+                    url += `?encrypt=false${expiryParam}`;
+                }
 
+                if (embeddedPreview) {
+                    url += '&embedded=true';
+                } else {
+                    url += '&embedded=false';
+                }
+    
+                xhr.open('POST', url, true);
+                xhr.withCredentials = true;
+    
                 xhr.upload.addEventListener('progress', (event) => {
                     if (event.lengthComputable) {
                         const percentComplete = (event.loaded / event.total) * 100;
                         updateProgressBar(percentComplete);
                     }
                 });
-
+    
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         if (xhr.status === 200) {
                             const responseData = JSON.parse(xhr.responseText);
-                            setState('uploaded');
+                            const uploadInfo = {
+                                id: responseData.id,
+                                url: `${WEBSITE_URL}/download/${responseData.id}`,
+                                name: files[0].name,
+                                size: files[0].size,
+                                createdAt: new Date().toISOString(),
+                                expiresAt: expiryOption === "hours" ? calculateExpiryTime() : null,
+                            };
+    
+                            if (expiryOption === "downloads") {
+                                uploadInfo.expiresAt = `Expires after ${expiryValue} downloads`;
+                            }
+    
+                            if (addToHistory) {
+                                setUploadedFiles(prevUploadedFiles => [...prevUploadedFiles, uploadInfo]);
+                                localStorage.setItem('uploadedFiles', JSON.stringify([...uploadedFiles, uploadInfo]));
+                            }
+    
                             setDownloadUrl(`${WEBSITE_URL}/download/${responseData.id}`);
                             setDeleteUrl(`${WEBSITE_URL}/delete/${responseData.id}?key=${responseData.deleteKey}`);
+                            setState('uploaded');
                             if (isEncrypted && responseData.decryptionKey) {
                                 setDecryptionKey(responseData.decryptionKey);
                             }
                         } else {
-                            // console.error('There was an error while uploading files');
                             setErrorMessage("There was an error while uploading files");
+                            setState('selecting');
                         }
                     }
                 };
-
+    
                 xhr.send(formData);
             } catch (error) {
                 console.error('Error:', error);
                 setErrorMessage(error);
+                setState('selecting');
             }
         } else {
             console.error('No files selected for upload.');
             setErrorMessage('No files selected for upload.');
+            setState('selecting');
         }
     };
     
+    const getExpiryParam = () => {
+        if (expiryOption && expiryValue !== null) {
+            if (expiryOption === "hours") {
+                return `&expiry_hours=${expiryValue}`;
+            } else if (expiryOption === "downloads") {
+                return `&expiry_downloads=${expiryValue}`;
+            }
+        }
+        return "";
+    };
+
+    const calculateExpiryTime = () => {
+        if (expiryOption === "hours" && expiryValue !== null) {
+            const expiryTime = new Date();
+            expiryTime.setHours(expiryTime.getHours() + expiryValue);
+            return expiryTime.toISOString();
+        }
+        return null;
+    };
+
     const updateProgressBar = (percentComplete: number) => {
         setUploadProgress(percentComplete);
         const progressBar = document.getElementById('progress-bar');
@@ -137,27 +215,33 @@ export function Testing() {
         setFiles(dataTransfer.files);
     };
 
-    useEffect(() => {
-        const label = document.getElementById("drop-label");
-        if (label) {
-            label.addEventListener('dragenter', () => {
-                label.classList.add('whiteshadow');
-            });
+    const handleTextPaste = (event: Event) => {
+        const target = event.target as HTMLTextAreaElement;
+        const pastedText = target.value;
+        setPastedText(pastedText);
+    };
+    
+    const addPastedTextAsFile = (event: Event) => {
+        event.preventDefault();
+        const blob = new Blob([pastedText], { type: 'text/plain' });
+        const pastedFile = new File([blob], "pasted_text.txt");
+    
+        const dataTransfer = new DataTransfer();
+    
+        dataTransfer.items.add(pastedFile);
+    
+        const fileList = dataTransfer.files;
+        setFiles(fileList);
+        setErrorMessage("");
+    };
 
-            label.addEventListener('dragleave', () => {
-                label.classList.remove('whiteshadow');
-            });
+    const togglePasteText = () => {
+        setShowPasteText(!showPasteText);
+    };
 
-            return () => {
-                label.removeEventListener('dragenter', () => {
-                    label.classList.add('whiteshadow');
-                });
-                label.removeEventListener('dragleave', () => {
-                    label.classList.remove('whiteshadow');
-                });
-            };
-        }
-    }, []);
+    const isMedia = (file) => {
+        return file.type.startsWith('image/') || file.type.startsWith('video/');
+    };
 
     return (
         <div>
@@ -173,20 +257,34 @@ export function Testing() {
                     />
                     <form class="flex flex-col" method="post" enctype="multipart/form-data">
                         {files && files.length > 0 && (
-							<div id={"file"} class="flex flex-col gap-2 mb-5">
-								{Array.from(files).map((file, index) => (
-									<FileComponent name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} onRemove={() => removeFile(index)} />
-								))}
-							</div>
-						)}
+                            <div id={"file"} class="flex flex-col gap-2 mb-5">
+                                {Array.from(files).map((file, index) => (
+                                    <FileComponent name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} canEdit={state === "selecting"} onRemove={() => removeFile(index)} />
+                                ))}
+                            </div>
+                        )}
+                        {showPasteText && (
+                            <div id={"paste-text-file"} class="flex flex-col gap-2 mb-5">
+                                <FileComponent
+                                    name={"pasted_text.txt"} 
+                                    size={pastedText.length} 
+                                    progress={null}
+                                    key={"pasted_text"}
+                                    canRemove={true}
+                                    canEdit={true}
+                                    onRemove={() => setPastedText("")} 
+                                    isPastedText={true} 
+                                />
+                            </div>
+                        )}
                         {state === "selecting" && (
+                        <>
                             <label class={`flex flex-col items-center py-6 rounded-lg border border-white cursor-pointer transition-colors whiteshadow ${isDragging ? styles.whiteshadow : ''}`}
-                            onDragOver={handleDragOver}
-                            onDragLeave={handleDragLeave}
-                            onDrop={handleDrop}>
+                                onDragOver={handleDragOver}
+                                onDragLeave={handleDragLeave}
+                                onDrop={handleDrop}>
                                 <input onChange={(e) => {
                                     const files = e.currentTarget.files;
-                                    
                                     const totalSize = Array.from(files).reduce((accumulator, file) => accumulator + file.size, 0);
                                     if (totalSize > 1024 * 1024 * 1024) {
                                         setErrorMessage(translatedText('Total files size exceeds the 1 GB limit. Please upload files smaller than 1 GB.'));
@@ -195,9 +293,20 @@ export function Testing() {
                                         setErrorMessage("");
                                     }
                                 }} class="hidden" type="file" name="files" required />
-
-                                <p class="px-3 text-center">{translatedText('Click to select files or drag and drop here')}</p>
+                                <p class="px-3 text-center">
+                                    {translatedText('Click to select files or drag and drop here')}
+                                </p>
                             </label>
+                            <div class="my-2 mx-28"></div>
+                            <div class="flex flex-col items-center">
+                                <textarea style={"resize: vertical;"} placeholder={translatedText('Maybe you want to paste text?')} onChange={handleTextPaste} class="border border-white bg-transparent rounded-md p-2 resize-none w-full" rows={4} />
+                            </div>
+                            <div class="my-2 mx-28"></div>
+                            {/* <Button text={translatedText('Submit')} onClick={addPastedTextAsFile} /> */}
+                            {pastedText.length > 0 && (
+                                <Button text={translatedText('Submit')} onClick={addPastedTextAsFile} />
+                            )}
+                        </>
                         )}
                         {files && files.length > 0 && (
                             <>
@@ -217,6 +326,72 @@ export function Testing() {
                                                 <div class={styles.encryptedButtonDot}/>
                                             </button>
                                         </div>
+                                        <div class="my-3">
+                                        <div class={styles.encrypted}>
+                                            {translatedText('Would you like this file to expire?')}
+                                            <button 
+                                                class={`${styles.encryptedButton} ${expiryOption ? styles.encryptedButtonActive : ''}`} 
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setExpiryOption(expiryOption ? null : 'hours');
+                                                }}
+                                            >
+                                                &#x200B;
+                                                <div class={styles.encryptedButtonDot}/>
+                                            </button>
+                                        </div>
+                                        {/* <div class="my-3"></div> */}
+                                        {expiryOption && (
+                                            <div class="my-3 flex items-center">
+                                                <span class="mr-2">
+                                                    {expiryOption === "hours" ? translatedText('Expiry after') : translatedText('Expiry after')}
+                                                </span>
+                                                <input
+                                                    class="mr-2 w-24 flex px-3 py-2 font-light rounded-lg border border-white whiteshadow bg-transparent text-center
+                                                    [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none
+                                                    "
+                                                    type="number"
+                                                    value={expiryValue ?? ''}
+                                                    min="0"
+                                                    onChange={(e) => setExpiryValue(parseInt(e.currentTarget.value))}
+                                                />
+                                                <span class="mr-2">
+                                                    <a onClick={() => setExpiryOption('hours')} style={{ textDecoration: expiryOption === 'hours' ? 'underline' : 'none' }}>{translatedText('hours')}</a> / <a onClick={() => setExpiryOption('downloads')} style={{ textDecoration: expiryOption === 'downloads' ? 'underline' : 'none' }}>{translatedText('downloads')}</a>
+                                                </span>
+                                            </div>
+                                        )}
+                                        </div>
+                                        <div class={styles.encrypted}>
+                                            {translatedText('Save this file in local history?')}
+                                            <button 
+                                                class={`${styles.encryptedButton} ${addToHistory ? styles.encryptedButtonActive : ''}`} 
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setAddToHistory(!addToHistory);
+                                                }}
+                                            >
+                                                &#x200B;
+                                                <div class={styles.encryptedButtonDot}/>
+                                            </button>
+                                        </div>
+                                        {isMedia(files[0]) && (
+                                            <>
+                                                <div class="my-[6px]"></div>
+                                                <div class={styles.encrypted}>
+                                                    {translatedText('Embed the preview?')}
+                                                    <button 
+                                                        class={`${styles.encryptedButton} ${embeddedPreview ? styles.encryptedButtonActive : ''}`} 
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            setEmbeddedPreview(!embeddedPreview);
+                                                        }}
+                                                    >
+                                                        &#x200B;
+                                                        <div class={styles.encryptedButtonDot}/>
+                                                    </button>
+                                                </div>
+                                            </>
+                                        )}
                                     </>
                                 )}
                                 {state === "uploading" && (
@@ -241,7 +416,10 @@ export function Testing() {
                                     </>
                                 )}
                                 {state !== "uploading" && (
+                                    <>
+                                    <div class="my-2 mx-28"></div>
                                     <p class="text-md text-center text-red-500">{errorMessage}</p>
+                                    </>
                                 )}
                             </>
                         )}
@@ -261,6 +439,15 @@ export function Testing() {
                     <button onClick={copyDeleteUrl} class="border border-white whiteshadow px-3 py-3 rounded-md w-full text-left break-all">
                         {deleteUrl}
                     </button>
+                    <div class="h-[1px] my-2 mx-28"></div>
+                    <p class="text-center">
+                    <a class="text-accent text-xl" onClick={() => window.location.href="/"}>{translatedText('Go back!')}</a>
+                    </p>
+                </div>
+            )}
+            {state !== "uploading" && !files && uploadedFiles.length > 0 && (
+                <div class="mt-6 text-center text-accent">
+                    <a href="/history">{translatedText('See history of your uploaded files')}</a>
                 </div>
             )}
         </div>

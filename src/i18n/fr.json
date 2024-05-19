@@ -88,5 +88,12 @@
     
     "See history of your uploaded files": "Voir l'historique de vos fichiers téléchargés",
     "Uploaded files": "Fichiers téléchargés",
-    "Used space": "Espace utilisé"
+    "Used space": "Espace utilisé",
+
+    "FOUNDED BY": "FONDÉ PAR",
+    "PROVIDERS OF": "FOURNISSEURS DE",
+
+    "Maybe you want to paste text?": "Voulez-vous peut-être coller du texte?",
+    "Embed the preview?": "Intégrer l'aperçu",
+    "Submit": "Soumettre"
 }

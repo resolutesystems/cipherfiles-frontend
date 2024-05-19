@@ -99,6 +99,7 @@ export function History() {
                         size={file.size}
                         progress={null}
                         canRemove={true}
+                        canEdit={false}
                         onRemove={() => removeFileFromHistory(file.id)}
                     />
                     <div class="my-3 mx-28"></div>

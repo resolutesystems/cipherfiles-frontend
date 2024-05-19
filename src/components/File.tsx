@@ -10,11 +10,12 @@ interface Props {
     progress: number | null;
     size: number;
     canRemove: boolean;
+    canEdit: boolean;
     onRemove: () => void;
     isPastedText?: boolean;
 }
 
-export function FileComponent({ name, progress, size, canRemove, onRemove, isPastedText = false }: Props) {
+export function FileComponent({ name, progress, size, canRemove, canEdit, onRemove, isPastedText = false }: Props) {
     const lastDotIndex = name.lastIndexOf('.');
     let fileNameWithoutExtension = name;
     let fileExtension = '';
@@ -73,7 +74,7 @@ export function FileComponent({ name, progress, size, canRemove, onRemove, isPas
                 ) : (
                     <p class="flex items-center gap-1">
                         <span>{formattedName}{fileExtension && `.${fileExtension}`}</span>
-                        {canRemove &&showPenIcon && (
+                        {canEdit && showPenIcon && (
                             <button>
                                 <PenIcon onClick={handleEditClick}/>
                             </button>

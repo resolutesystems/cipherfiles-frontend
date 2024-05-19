@@ -221,7 +221,8 @@ export function Home() {
         setPastedText(pastedText);
     };
     
-    const addPastedTextAsFile = () => {
+    const addPastedTextAsFile = (event: Event) => {
+        event.preventDefault();
         const blob = new Blob([pastedText], { type: 'text/plain' });
         const pastedFile = new File([blob], "pasted_text.txt");
     
@@ -258,7 +259,7 @@ export function Home() {
                         {files && files.length > 0 && (
                             <div id={"file"} class="flex flex-col gap-2 mb-5">
                                 {Array.from(files).map((file, index) => (
-                                    <FileComponent name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} onRemove={() => removeFile(index)} />
+                                    <FileComponent name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} canEdit={state === "selecting"} onRemove={() => removeFile(index)} />
                                 ))}
                             </div>
                         )}
@@ -269,7 +270,8 @@ export function Home() {
                                     size={pastedText.length} 
                                     progress={null}
                                     key={"pasted_text"}
-                                    canRemove={true} 
+                                    canRemove={true}
+                                    canEdit={true}
                                     onRemove={() => setPastedText("")} 
                                     isPastedText={true} 
                                 />
@@ -297,7 +299,7 @@ export function Home() {
                             </label>
                             <div class="my-2 mx-28"></div>
                             <div class="flex flex-col items-center">
-                                <textarea style={"resize: vertical;"} placeholder="Maybe you want to paste text?" onChange={handleTextPaste} class="border border-white bg-transparent rounded-md p-2 resize-none w-full" rows={4} />
+                                <textarea style={"resize: vertical;"} placeholder={translatedText('Maybe you want to paste text?')} onChange={handleTextPaste} class="border border-white bg-transparent rounded-md p-2 resize-none w-full" rows={4} />
                             </div>
                             <div class="my-2 mx-28"></div>
                             {/* <Button text={translatedText('Submit')} onClick={addPastedTextAsFile} /> */}
