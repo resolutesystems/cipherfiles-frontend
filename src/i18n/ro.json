@@ -5,15 +5,15 @@
     "home": "acasă",
     "tos": "tos",
     "report abuse": "raportați abuzul",
-    "faq": "faq",
+    "faq": "intrebări",
     "our community": "comunitatea noastră",
 
     "Uploading your files": "Încărcarea fișierelor dvs.",
     "complete": "complet",
-    "Upload your files": "Încărcați fișierele dvs.",
-    "Maximum upload file size: <strong>1 GB</strong>": "Dimensiunea maximă a fișierului pentru încărcare: <strong>1 GB</strong>",
-    "Click to select files or drag and drop here": "Faceți clic pentru a selecta fișiere sau trageți și plasați aici",
-    "Wanna encrypt a file?": "Doriți să criptați un fișier?",
+    "Upload your files": "Urcă fișierele.",
+    "Maximum upload file size: <strong>1 GB</strong>": "Mărime maximă a fișierelor: <strong>1 GB</strong>",
+    "Click to select files or drag and drop here": "Dă click aici sau trage fișierele pentru a le urca.",
+    "Wanna encrypt a file?": "Ai dori ca acest fișier să fie criptat?",
 
     "Copied download url to clipboard!": "URL-ul de descărcare a fost copiat în clipboard!",
     "Copied delete url to clipboard!": "URL-ul de ștergere a fost copiat în clipboard!",
@@ -27,8 +27,8 @@
     "Delete link": "Link de ștergere",
 
     "Terms of Service": "Termeni de utilizare",
-    "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "Deoarece suntem conștienți de confidențialitate și apreciem libertatea de partajare, ne propunem să avem cât mai puține restricții posibile:",
-    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Nu abuzați site-ul, dacă găsiți o modalitate de exploatare, <a href=\"/report-abuse\">vă rugăm să o raportați.</a>",
+    "Because we are privacy-conscious and value sharing freedom, we aim for as few restrictions as possible:": "Pentru că suntem conștienți de confidențialitate și prețuim libertatea de partajare, ne propunem să avem cât mai puține restricții posibil:",
+    "Don't abuse service exploits, if you find any <a href=\"/report-abuse\">please report it.</a>": "Dacă cineva ți-a trimis un link de descărcare cu conținut ilegal, ești obligat să raportezi acest lucru prin intermediul formularului <a class=\"text-accent link\" href=\"/report-abuse\">reportează abuz</a>!",
     "Uploading illegal or copyrighted content is forbidden.": "Încărcarea de conținut ilegal sau protejat de drepturi de autor este interzisă.",
 
     "Privacy Policy": "Politica de confidențialitate",
@@ -86,8 +86,8 @@
     "Go back!": "Înapoi!",
 
     "See history of your uploaded files": "Vezi istoricul fișierelor încărcate de dvs.",
-    "Uploaded files": "Fișiere încărcate",
-    "Used space": "Spațiu utilizat",
+    "Uploaded files": "Fișiere Urcate",
+    "Used space": "Spațiu Folosit",
 
     "FOUNDED BY": "ÎNFIINȚAT DE",
     "PROVIDERS OF": "FURNIZORI DE",

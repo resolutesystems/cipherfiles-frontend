@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useState, useEffect } from 'preact/hooks';
 import { formatBytes } from './helpers';
 import DocumentIcon from "../assets/icons/DocumentIcon";
 import XIcon from "../assets/icons/XIcon";
@@ -13,9 +13,11 @@ interface Props {
     canEdit: boolean;
     onRemove: () => void;
     isPastedText?: boolean;
+    setFileName: (name: string) => void;
+    addPastedTextAsFile: (event: Event) => void;
 }
 
-export function FileComponent({ name, progress, size, canRemove, canEdit, onRemove, isPastedText = false }: Props) {
+export function FileComponent({ name, progress, size, canRemove, setFileName, canEdit, onRemove, isPastedText = false, addPastedTextAsFile }: Props) {
     const lastDotIndex = name.lastIndexOf('.');
     let fileNameWithoutExtension = name;
     let fileExtension = '';
@@ -37,7 +39,16 @@ export function FileComponent({ name, progress, size, canRemove, canEdit, onRemo
     }
 
     const handleNameChange = (event: any) => {
-        setNewName(event.target.value);
+        const newName = event.target.value;
+        const trimmedName = newName.trim();
+        let updatedName = trimmedName;
+
+        if (trimmedName.endsWith('.txt')) {
+            updatedName = trimmedName.slice(0, -4);
+        }
+    
+        setNewName(updatedName);
+        setFileName(updatedName);
     };
     
     const handleEditClick = () => {
@@ -45,11 +56,20 @@ export function FileComponent({ name, progress, size, canRemove, canEdit, onRemo
         setShowPenIcon(false);
     };
     
-    const handleCheckClick = () => {
-        if (newName.trim() === "") return;
+    const handleCheckClick = (event: any) => {
+        if (!newName) return;
         setEditingName(false);
         setShowPenIcon(true);
+        setFileName(`${newName}.txt`);
+    
+        addPastedTextAsFile(event);
     };
+
+    useEffect(() => {
+        const lastDotIndex = name.lastIndexOf('.');
+        const nameWithoutExtension = lastDotIndex !== -1 ? name.slice(0, lastDotIndex) : name;
+        setNewName(nameWithoutExtension);
+    }, [name]);
 
     return (
         <div class="flex flex-col px-3 py-3 font-light gap-3 rounded-lg border border-white whiteshadow">
@@ -67,16 +87,16 @@ export function FileComponent({ name, progress, size, canRemove, canEdit, onRemo
                             required
                             class="bg-transparent border border-white rounded-md pl-1 pr-1 w-[70%]"
                         />
-                        <button>
-                            <CheckIcon onClick={handleCheckClick} />
+                        <button onClick={handleCheckClick}>
+                            <CheckIcon />
                         </button>
                     </>
                 ) : (
                     <p class="flex items-center gap-1">
                         <span>{formattedName}{fileExtension && `.${fileExtension}`}</span>
                         {canEdit && showPenIcon && (
-                            <button>
-                                <PenIcon onClick={handleEditClick}/>
+                            <button onClick={handleEditClick}>
+                                <PenIcon />
                             </button>
                         )}
                     </p>

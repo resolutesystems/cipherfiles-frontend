@@ -1,3 +1,5 @@
+import { useEffect } from "preact/hooks";
+
 export const API_URL = "http://127.0.0.1:3000";
 export const WEBSITE_URL = "http://127.0.0.1:5173";
 export const COMMUNITY_URL = "https://discord.gg/DmRhftYcvN";
@@ -18,3 +20,13 @@ export function formatBytes(bytes: number, decimals = 2) {
 
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`
 }
+
+export const generateRandomString = (length: number) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+};

@@ -59,12 +59,12 @@ body {
 
 a:hover {
     transition: transform .2s, color .2s, background-color .2s;
-    color: #fff;
+    color: $white;
 }
 
 .whiteshadow:hover {
     transition: transform .1s, box-shadow .1s, color .1s, background-color .1s;
-    box-shadow: 3px 3px #fff;
+    box-shadow: 3px 3px $white;
 }
 
 .whiteshadow:active {
@@ -102,7 +102,7 @@ ul li a:before {
 input:focus {
     outline: none;
     transition: transform .1s, box-shadow .1s;
-    box-shadow: 3px 3px #fff;
+    box-shadow: 3px 3px $white;
 }
 
 input::selection {

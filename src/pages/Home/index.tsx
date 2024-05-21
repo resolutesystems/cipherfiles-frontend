@@ -2,7 +2,7 @@ import { useState, useEffect } from 'preact/hooks';
 import { FileComponent } from '../../components/File';
 import { Button } from '../../components/Button';
 import styles from './header.module.scss'
-import { WEBSITE_URL, API_URL } from '../../components/helpers';
+import { WEBSITE_URL, API_URL, generateRandomString } from '../../components/helpers';
 import { useTranslations } from '../../components/i18n';
 
 export function Home() {
@@ -30,6 +30,8 @@ export function Home() {
     }[]>([]);
     const [pastedText, setPastedText] = useState<string>("");
     const [showPasteText, setShowPasteText] = useState(false);
+    const initialFileName = generateRandomString(8)
+    const [pastedTextFileName, setPastedTextFileName] = useState<string>(initialFileName);
 
     useEffect(() => {
         const storedFiles = localStorage.getItem('uploadedFiles');
@@ -224,7 +226,7 @@ export function Home() {
     const addPastedTextAsFile = (event: Event) => {
         event.preventDefault();
         const blob = new Blob([pastedText], { type: 'text/plain' });
-        const pastedFile = new File([blob], "pasted_text.txt");
+        const pastedFile = new File([blob], `${pastedTextFileName}.txt`);
     
         const dataTransfer = new DataTransfer();
     
@@ -234,6 +236,7 @@ export function Home() {
         setFiles(fileList);
         setErrorMessage("");
     };
+    
 
     const togglePasteText = () => {
         setShowPasteText(!showPasteText);
@@ -259,21 +262,29 @@ export function Home() {
                         {files && files.length > 0 && (
                             <div id={"file"} class="flex flex-col gap-2 mb-5">
                                 {Array.from(files).map((file, index) => (
-                                    <FileComponent name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} canEdit={state === "selecting"} onRemove={() => removeFile(index)} />
+                                    <FileComponent addPastedTextAsFile={(event: Event) => addPastedTextAsFile(event)} setFileName={setPastedTextFileName} name={file.name} size={file.size} progress={null} key={index} canRemove={state === "selecting"} canEdit={file.name.endsWith('.txt')}  onRemove={() => {
+                                        removeFile(index)
+                                        setPastedTextFileName(initialFileName);
+                                    }} />
                                 ))}
                             </div>
                         )}
                         {showPasteText && (
                             <div id={"paste-text-file"} class="flex flex-col gap-2 mb-5">
                                 <FileComponent
-                                    name={"pasted_text.txt"} 
+                                    name={pastedTextFileName} 
                                     size={pastedText.length} 
                                     progress={null}
                                     key={"pasted_text"}
                                     canRemove={true}
                                     canEdit={true}
-                                    onRemove={() => setPastedText("")} 
-                                    isPastedText={true} 
+                                    onRemove={() => {
+                                        () => setPastedText("");
+                                        setPastedTextFileName(initialFileName);
+                                    }} 
+                                    isPastedText={true}
+                                    setFileName={setPastedTextFileName}
+                                    addPastedTextAsFile={(event: Event) => addPastedTextAsFile(event)}
                                 />
                             </div>
                         )}
@@ -299,7 +310,7 @@ export function Home() {
                             </label>
                             <div class="my-2 mx-28"></div>
                             <div class="flex flex-col items-center">
-                                <textarea style={"resize: vertical;"} placeholder={translatedText('Maybe you want to paste text?')} onChange={handleTextPaste} class="border border-white bg-transparent rounded-md p-2 resize-none w-full" rows={4} />
+                                <textarea style={"resize: vertical;"} placeholder={translatedText('Maybe you want to paste text?')} onInput={handleTextPaste} class="border border-white bg-transparent rounded-md p-2 resize-none w-full" rows={4} />
                             </div>
                             <div class="my-2 mx-28"></div>
                             {/* <Button text={translatedText('Submit')} onClick={addPastedTextAsFile} /> */}
@@ -374,7 +385,7 @@ export function Home() {
                                                 <div class={styles.encryptedButtonDot}/>
                                             </button>
                                         </div>
-                                        {isMedia(files[0]) && (
+                                        {/* {isMedia(files[0]) && (
                                             <>
                                                 <div class="my-[6px]"></div>
                                                 <div class={styles.encrypted}>
@@ -391,7 +402,7 @@ export function Home() {
                                                     </button>
                                                 </div>
                                             </>
-                                        )}
+                                        )} */}
                                     </>
                                 )}
                                 {state === "uploading" && (
